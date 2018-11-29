@@ -7,6 +7,10 @@ const routes: Routes = [
     loadChildren: 'src/app/my-info/my-info.module#MyInfoModule'
   },
   {
+    path: 'team',
+    loadChildren: 'src/app/team/team.module#TeamModule'
+  },
+  {
     path: '',
     redirectTo: '/my-info',
     pathMatch: 'full'
