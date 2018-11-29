@@ -1,0 +1,27 @@
+<div class="mt-4">
+  <h3 class="mb-3">Company Details</h3>
+  <form [formGroup]="companyDetailsForm">
+    <div class="form-group col">
+      <label for="companyNameInput">Company Name:</label>
+      <input formControlName="companyName" type="text" class="form-control" id="companyNameInput" disabled>
+    </div>
+
+    <div class="form-group col">
+      <label for="companyURLInput">URL:</label>
+      <input formControlName="companyURL" type="text" class="form-control" id="companyURLInput" disabled>
+    </div>
+
+    <div formGroupName="companyTeamsForm">
+      <div class="form-group col">
+        <label for="teamNameInput">Team Name:</label>
+        <input formControlName="teamName" type="text" class="form-control" id="teamNameInput" disabled>
+      </div>
+
+      <div class="form-group col">
+        <label for="teamBossInput">Team Boss:</label>
+        <input formControlName="teamBoss" type="text" class="form-control" id="teamBossInput" disabled>
+      </div>
+    </div>
+
+  </form>
+</div>

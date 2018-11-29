@@ -1,0 +1,45 @@
+<div class="mt-4">
+  <h3 class="mb-3">Personal Details</h3>
+  <form [formGroup]="personalDetailsForm" (ngSubmit)="onSubmit()">
+    <div class="form-group col">
+      <label for="fullNameInput">Full Name:</label>
+      <input formControlName="fullName" type="text" class="form-control" id="fullNameInput" required>
+    </div>
+
+    <div class="form-group col">
+      <label for="emailInput">Email:</label>
+      <input formControlName="email" type="text" class="form-control" id="emailInput" required>
+    </div>
+
+    <div class="form-group col">
+      <label for="phoneInput">Phone:</label>
+      <input formControlName="phone" type="text" class="form-control" id="phoneInput" required>
+    </div>
+
+    <div class="form-group col">
+      <label for="positionInput">Position:</label>
+      <input formControlName="companyPosition" type="text" class="form-control" id="positionInput" required>
+    </div>
+
+    <div class="form-group col">
+      <label for="birthdayInput">Birthday:</label>
+      <div class="input-group">
+        <input formControlName="birthday" type="text" class="form-control" id="birthdayInput" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+        <div class="input-group-append">
+          <button class="btn btn-outline-primary" type="button" (click)="d.toggle()">Choose...</button>
+        </div>
+      </div>
+
+
+
+    </div>
+
+    <div class="form-group col">
+      <label for="dietInput">Dietary Restrictions:</label> (make dropdown)
+      <input formControlName="diet" type="text" class="form-control" id="dietInput">
+    </div>
+
+
+    <button class="btn btn-primary" type="submit" [disabled]="!personalDetailsForm.valid">Save</button>
+  </form>
+</div>
