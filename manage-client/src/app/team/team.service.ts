@@ -12,7 +12,7 @@ export class TeamService {
     return [
       {
         fullName: "Alisa Kosinov",
-        image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=350",
+        image: "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person",
         position: "UI Developer",
         status: "Working",
         requests: [
@@ -37,19 +37,19 @@ export class TeamService {
           {
             title: "ITA-2029",
             description: "UI not showing something here",
-            link: "http://jira:8080/ITA-2029",
+            link: "http://jira:8080/browse/ITA-2029",
             status: "new"
           },
           {
           title: "ITA-2029",
           description: "UI not showing something here",
-          link: "http://jira:8080/ITA-2029",
+          link: "http://jira:8080/browse/ITA-2029",
           status: "progress"
         }],
       },
       {
         fullName: "Matan Sar Shalom",
-        image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=350",
+        image: "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person",
         position: "UI Developer",
         status: "Working",
         requests: [
@@ -73,13 +73,13 @@ export class TeamService {
         tasks: [{
           title: "ITA-2029",
           description: "UI not showing something here",
-          link: "http://jira:8080/ITA-2029",
+          link: "http://jira:8080/browse/ITA-2029",
           status: "new"
         }],
       },
       {
         fullName: "Mattan Leibovich",
-        image: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&h=350",
+        image: "https://www.thehindu.com/sci-tech/technology/internet/article17759222.ece/alternates/FREE_660/02th-egg-person",
         position: "UI Developer",
         status: "Working",
         requests: [
@@ -103,7 +103,7 @@ export class TeamService {
         tasks: [{
           title: "ITA-2029",
           description: "UI not showing something here",
-          link: "http://jira:8080/ITA-2029",
+          link: "http://jira:8080/browse/ITA-2029",
           status: "new"
         }],
       }
