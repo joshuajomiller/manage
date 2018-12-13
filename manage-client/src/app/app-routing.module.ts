@@ -1,7 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {LoginComponent} from "./shell/login/login.component";
 
 const routes: Routes = [
+  {
+    path: 'login',
+    component: LoginComponent
+  },
   {
     path: 'my-info',
     loadChildren: 'src/app/my-info/my-info.module#MyInfoModule'
@@ -12,7 +17,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/my-info',
+    redirectTo: '/login',
     pathMatch: 'full'
   }
 ];
