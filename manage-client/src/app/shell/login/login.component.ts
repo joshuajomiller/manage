@@ -17,7 +17,9 @@ export class LoginComponent implements OnInit {
   constructor(
     private authService: AuthService,
     private router: Router,
-  ) { }
+  ) {
+    this.authService.logout();
+  }
 
   ngOnInit() {}
 
@@ -25,7 +27,7 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password, this.remember)
       .subscribe(user => {
         if (user && user.token) {
-          this.router.navigate(['/dashboard']);
+          this.router.navigate(['/my-info']);
         }
       });
   }

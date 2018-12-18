@@ -10,6 +10,8 @@ export class AppComponent {
   public isLoggedIn = false;
 
   constructor(private authService: AuthService) {
-    this.isLoggedIn = authService.isLoggedIn;
+    this.authService.authStatusChange.subscribe(status => {
+      this.isLoggedIn = status;
+    });
   }
 }

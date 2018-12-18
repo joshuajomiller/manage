@@ -1,6 +1,8 @@
 export class User {
-  userName: string;
-  firstName: string;
-  lastName: string;
   token: string;
+  user: {
+    userName: string;
+    firstName: string;
+    lastName: string;
+  }
 }
