@@ -19,7 +19,7 @@ router.post('/login', function (req, res, next) {
       const token = jwt.sign({email: user.email, password: user.password}, 'your_jwt_secret_123');
       user = {
         email: user.email,
-        name: 'tbd'
+        profile: user.profile
       };
       res.send({user, token});
     });

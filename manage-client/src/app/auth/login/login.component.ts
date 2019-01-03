@@ -9,6 +9,7 @@ import {AuthService} from "../auth.service";
 })
 export class LoginComponent implements OnInit {
 
+  public fullName: string;
   public email: string;
   public password: string;
   public remember: boolean;
@@ -33,10 +34,10 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.email, this.password, this.remember)
-      .subscribe(user => {
-        if (user && user.token) {
-          this.router.navigate(['/dashboard']);
+    this.authService.register(this.fullName, this.email, this.password, this.remember)
+      .subscribe(status => {
+        if (status && status.created) {
+          this.login();
         }
       });
   }

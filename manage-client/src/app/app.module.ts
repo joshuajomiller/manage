@@ -4,10 +4,10 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShellModule } from './shell/shell.module';
-import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
-import {CoreModule} from "./core/core.module";
-import {TokenInterceptor} from "./auth/token.interceptor";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+import { CoreModule } from "./core/core.module";
+import { TokenInterceptor } from "./auth/token.interceptor";
 
 @NgModule({
   declarations: [

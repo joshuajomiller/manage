@@ -31,6 +31,10 @@
           <h6 class="card-subtitle text-muted float-right mt-2" (click)="toggleCard()">Login</h6>
           <form>
             <div class="form-group">
+              <input type="text" class="form-control" id="registerName" aria-describedby="nameHelp"
+                     placeholder="Name" [(ngModel)]="fullName" name="name">
+            </div>
+            <div class="form-group">
               <input type="email" class="form-control" id="registerEmail" aria-describedby="emailHelp"
                      placeholder="Email" [(ngModel)]="email" name="email">
               <small id="registerEmailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>

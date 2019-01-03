@@ -12,23 +12,29 @@ router.route('/')
 
   /* POST new user. */
   .post(function (req, res) {
-    let email = req.body.email;
-    let password = req.body.password;
+    let newUser = {
+      email: req.body.email,
+      password: req.body.password,
+      profile: {
+        details: {
+          name: req.body.name,
+        }
+      }
+    };
 
-    User.findOne({email: email}, (err, existingUser) => {
+    User.findOne({email: req.body.email}, (err, existingUser) => {
       if (err) {
         res.status(400).send({error: err});
       } else {
         if (existingUser) {
           res.status(400).send({msg: 'There is already an existing user registered with that email.'});
         } else {
-          User.create({email: email, password: password}, function (err, small) {
+          User.create(newUser, function (err, small) {
             if (err) {
               res.status(400).send(err)
             }
-            const token = jwt.sign({email: email, password: password}, 'your_jwt_secret_123');
-            console.log(token);
-            res.send({token});
+            //const token = jwt.sign(newUser, 'your_jwt_secret_123');
+            res.send({created: true});
           });
         }
       }

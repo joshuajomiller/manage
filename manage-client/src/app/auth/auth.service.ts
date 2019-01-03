@@ -38,14 +38,8 @@ export class AuthService {
     this.toggleAuthStatusChange(false);
   }
 
-  register(email: string, password: string, remember: boolean) {
-    return this.http.post<User>('/api/user', {email: email, password: password})
-      .pipe(
-        tap(user => {
-            this.setUser(user, remember)
-          }
-        )
-      );
+  register(name: string, email: string, password: string, remember: boolean) {
+    return this.http.post<{created}>('/api/user', {name: name, email: email, password: password});
   }
 
   setUser(user: User, remember: boolean) {
