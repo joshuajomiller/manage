@@ -4,7 +4,6 @@ import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../app-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { LoginComponent } from "./login/login.component";
 
 @NgModule({
   imports: [
@@ -13,8 +12,8 @@ import { LoginComponent } from "./login/login.component";
     AppRoutingModule
   ],
   exports: [
-    HeaderComponent, SidebarComponent, LoginComponent
+    HeaderComponent, SidebarComponent
   ],
-  declarations: [HeaderComponent, SidebarComponent, LoginComponent]
+  declarations: [HeaderComponent, SidebarComponent]
 })
 export class ShellModule { }

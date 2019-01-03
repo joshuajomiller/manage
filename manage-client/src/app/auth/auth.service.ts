@@ -4,14 +4,14 @@ import {HttpClient} from "@angular/common/http";
 import {Router} from "@angular/router";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
-import {Subject} from "rxjs/index";
+import {BehaviorSubject} from "rxjs/index";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User;
-  authStatusChange: Subject<boolean> = new Subject<boolean>();
+  authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
 
   constructor(private http: HttpClient, private router: Router) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));

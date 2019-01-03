@@ -7,7 +7,7 @@ import { ShellModule } from './shell/shell.module';
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {CoreModule} from "./core/core.module";
-import {TokenInterceptor} from "./core/token.interceptor";
+import {TokenInterceptor} from "./auth/token.interceptor";
 
 @NgModule({
   declarations: [
@@ -22,7 +22,8 @@ import {TokenInterceptor} from "./core/token.interceptor";
     CoreModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}],
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
