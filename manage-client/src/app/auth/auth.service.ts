@@ -1,19 +1,18 @@
 import {Injectable} from '@angular/core';
 import {User} from "./user";
 import {HttpClient} from "@angular/common/http";
-import {Router} from "@angular/router";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
-import {BehaviorSubject} from "rxjs/index";
+import {BehaviorSubject, Observable} from "rxjs/index";
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user: User;
-  authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(null);
+  authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient, private router: Router) {
+  constructor(private http: HttpClient) {
     this.user = JSON.parse(localStorage.getItem('currentUser'));
     if (this.user){
       this.toggleAuthStatusChange(true);
