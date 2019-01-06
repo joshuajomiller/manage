@@ -8,7 +8,8 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date,
   profile: {
       details: {
-          name: String,
+          firstName: String,
+          lastName: String,
           phone: String,
           position: String,
           birthDate: Date,

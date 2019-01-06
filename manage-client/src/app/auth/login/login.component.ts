@@ -9,7 +9,8 @@ import {AuthService} from "../auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  public fullName: string;
+  public firstName: string;
+  public lastName: string;
   public email: string;
   public password: string;
   public remember: boolean;
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
   }
 
   register() {
-    this.authService.register(this.fullName, this.email, this.password, this.remember)
+    this.authService.register(this.firstName, this.lastName, this.email, this.password, this.remember)
       .subscribe(status => {
         if (status && status.created) {
           this.login();

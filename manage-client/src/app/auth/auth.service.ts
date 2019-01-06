@@ -37,8 +37,8 @@ export class AuthService {
     this.toggleAuthStatusChange(false);
   }
 
-  register(name: string, email: string, password: string, remember: boolean) {
-    return this.http.post<{created}>('/api/user', {name: name, email: email, password: password});
+  register(firstName: string, lastName: string, email: string, password: string, remember: boolean) {
+    return this.http.post<{created}>('/api/user', {firstName: firstName, lastName: lastName, email: email, password: password});
   }
 
   setUser(user: User, remember: boolean) {

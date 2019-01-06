@@ -17,7 +17,8 @@ router.route('/')
       password: req.body.password,
       profile: {
         details: {
-          name: req.body.name,
+          firstName: req.body.firstName,
+          lastName: req.body.lastName,
         }
       }
     };
