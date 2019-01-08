@@ -13,6 +13,7 @@ let users = require('./routes/users');
 let test = require('./routes/test');
 let auth = require('./routes/auth');
 let boards = require('./routes/boards');
+let organisations = require('./routes/organisations');
 require('./controllers/passport');
 
 dotenv.load({ path: '.dev.env' });
@@ -38,6 +39,7 @@ app.use(tokenDecode);
 app.use('/', index);
 app.use('/user', users);
 app.use('/auth', auth);
+app.use('/organisation', passport.authenticate('jwt', {session: false}), organisations);
 app.use('/board', passport.authenticate('jwt', {session: false}), boards);
 app.use('/test', passport.authenticate('jwt', {session: false}), test);
 

@@ -13,9 +13,9 @@ export class AuthService {
   authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
-    this.user = JSON.parse(localStorage.getItem('currentUser'));
-    if (this.user){
-      this.toggleAuthStatusChange(true);
+    let user = JSON.parse(localStorage.getItem('currentUser'));
+    if (user){
+      this.setUser(user, true);
     }
   }
 
@@ -43,7 +43,9 @@ export class AuthService {
 
   setUser(user: User, remember: boolean) {
     this.user = user;
-    this.toggleAuthStatusChange(true);
+    if (user.user.profile.organisation.organisationId){
+      this.toggleAuthStatusChange(true);
+    }
     if (remember){
       localStorage.setItem('currentUser', JSON.stringify(user));
     }
@@ -65,5 +67,18 @@ export class AuthService {
 
   toggleAuthStatusChange(status: boolean) {
     this.authStatusChange.next(status);
+  }
+
+  joinOrganisation(organisationCode) {
+    return this.http.post('/api/user/join-organisation', {organisationCode});
+  }
+
+  createOrganisation(organisationName, organisationUrl) {
+    return this.http.post<{id: string}>('/api/organisation/', {organisationName, organisationUrl})
+      .pipe(
+        tap(data => {
+          console.log(data);
+        })
+      );
   }
 }

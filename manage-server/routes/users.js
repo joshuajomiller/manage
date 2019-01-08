@@ -42,6 +42,35 @@ router.route('/')
     });
   });
 
+/* Add user to organisation. */
+router.post('/join-organisation', function(req, res, next) {
+  let organisationId = req.params.id;
+  Board.findByIdAndUpdate(boardId, {$push: {posts: post}}, function (err, updatedBoard) {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      res.send({status: 'post created'});
+    }
+  });
+
+  User.findOne({email: req.body.email}, (err, existingUser) => {
+    if (err) {
+      res.status(400).send({error: err});
+    } else {
+      if (!existingUser) {
+        res.status(400).send({msg: 'This user does not exist.'});
+      } else {
+        User.create(newUser, function (err, small) {
+          if (err) {
+            res.status(400).send(err)
+          }
+          res.send({created: true});
+        });
+      }
+    }
+  });
+});
+
 /* GET user profile. */
 router.get('/profile', function(req, res, next) {
   res.send(req.user);

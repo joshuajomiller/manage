@@ -16,10 +16,7 @@ export class LoginComponent implements OnInit {
   public remember: boolean;
   public showLogin = true;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {
+  constructor( private authService: AuthService, private router: Router) {
     this.authService.logout();
   }
 
@@ -29,7 +26,11 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password, this.remember)
       .subscribe(user => {
         if (user && user.token) {
-          this.router.navigate(['/my-info']);
+          if (user.user.profile.organisation.organisationId){
+            this.router.navigate(['/my-info']);
+          } else {
+            this.router.navigate(['/login/add-organisation']);
+          }
         }
       });
   }
