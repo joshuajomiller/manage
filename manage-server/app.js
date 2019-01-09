@@ -37,8 +37,8 @@ app.use(cookieParser());
 app.use(tokenDecode);
 
 app.use('/', index);
-app.use('/user', users);
 app.use('/auth', auth);
+app.use('/user', passport.authenticate('jwt', {session: false}), users);
 app.use('/organisation', passport.authenticate('jwt', {session: false}), organisations);
 app.use('/board', passport.authenticate('jwt', {session: false}), boards);
 app.use('/test', passport.authenticate('jwt', {session: false}), test);

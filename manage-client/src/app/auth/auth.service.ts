@@ -38,7 +38,7 @@ export class AuthService {
   }
 
   register(firstName: string, lastName: string, email: string, password: string, remember: boolean) {
-    return this.http.post<{created}>('/api/user', {firstName: firstName, lastName: lastName, email: email, password: password});
+    return this.http.post<{created}>('/api/auth/user', {firstName: firstName, lastName: lastName, email: email, password: password});
   }
 
   setUser(user: User, remember: boolean) {
@@ -70,15 +70,10 @@ export class AuthService {
   }
 
   joinOrganisation(organisationCode) {
-    return this.http.post('/api/user/join-organisation', {organisationCode});
+    return this.http.post<{joined: boolean}>('/api/user/join-organisation', {organisationCode});
   }
 
   createOrganisation(organisationName, organisationUrl) {
-    return this.http.post<{id: string}>('/api/organisation/', {organisationName, organisationUrl})
-      .pipe(
-        tap(data => {
-          console.log(data);
-        })
-      );
+    return this.http.post<{code: string}>('/api/organisation/', {organisationName, organisationUrl})
   }
 }

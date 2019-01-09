@@ -1,6 +1,7 @@
 let express = require('express');
 let router = express.Router();
 const User = require("../models/User");
+const Organisation = require("../models/Organisation");
 const jwt  = require('jsonwebtoken');
 
 router.route('/')
@@ -10,64 +11,33 @@ router.route('/')
     res.send('Get all Users')
   })
 
-  /* POST new user. */
-  .post(function (req, res) {
-    let newUser = {
-      email: req.body.email,
-      password: req.body.password,
-      profile: {
-        details: {
-          firstName: req.body.firstName,
-          lastName: req.body.lastName,
-        }
-      }
-    };
-
-    User.findOne({email: req.body.email}, (err, existingUser) => {
-      if (err) {
-        res.status(400).send({error: err});
-      } else {
-        if (existingUser) {
-          res.status(400).send({msg: 'There is already an existing user registered with that email.'});
-        } else {
-          User.create(newUser, function (err, small) {
-            if (err) {
-              res.status(400).send(err)
-            }
-            //const token = jwt.sign(newUser, 'your_jwt_secret_123');
-            res.send({created: true});
-          });
-        }
-      }
-    });
-  });
-
 /* Add user to organisation. */
-router.post('/join-organisation', function(req, res, next) {
-  let organisationId = req.params.id;
-  Board.findByIdAndUpdate(boardId, {$push: {posts: post}}, function (err, updatedBoard) {
-    if (err) {
-      res.status(400).send(err);
-    } else {
-      res.send({status: 'post created'});
-    }
-  });
-
-  User.findOne({email: req.body.email}, (err, existingUser) => {
-    if (err) {
-      res.status(400).send({error: err});
-    } else {
-      if (!existingUser) {
-        res.status(400).send({msg: 'This user does not exist.'});
+router.post('/join-organisation', function(req, res) {
+  let organisationId = "";
+  Organisation.findOne({code: req.body.code}, (err, organisation) => {
+      if (err) {
+          res.status(400).send({error: err});
       } else {
-        User.create(newUser, function (err, small) {
-          if (err) {
-            res.status(400).send(err)
+          if (organisation) {
+              organisationId = organisation._id;
+              User.findOne({email: req.tokenDetails.email}, (err, user) => {
+                  if (err) {
+                      res.status(400).send(err);
+                  } else {
+                      if (user){
+                          user.profile.organisation.organisationId= organisationId;
+                          user.save(() => {
+                              res.send({joined: true});
+                          });
+                      } else {
+                          res.status(400).send({msg: 'User does not exist'});
+                      }
+                  }
+              });
+          } else {
+              res.status(400).send({msg: 'Company does not exist'});
           }
-          res.send({created: true});
-        });
       }
-    }
   });
 });
 

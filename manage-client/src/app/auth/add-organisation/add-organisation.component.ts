@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-organisation',
@@ -11,21 +12,24 @@ export class AddOrganisationComponent implements OnInit {
   organisationName: string;
   organisationUrl: string;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
   }
 
   joinOrganisation(code){
     this.authService.joinOrganisation(code || this.organisationCode).subscribe(res => {
-      console.log(res);
+      if (res.joined){
+        this.authService.toggleAuthStatusChange(true);
+        this.router.navigate(['/my-info']);
+      }
     });
   }
 
   createOrganisation(){
     this.authService.createOrganisation(this.organisationName, this.organisationUrl).subscribe(res => {
-      if (res && res.id){
-        this.joinOrganisation(res.id);
+      if (res && res.code){
+        this.joinOrganisation(res.code);
       }
     });
   }
