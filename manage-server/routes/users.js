@@ -6,10 +6,24 @@ const jwt  = require('jsonwebtoken');
 
 router.route('/')
 
-/* GET users listing. */
+/* GET user details. */
   .get(function (req, res) {
-    res.send('Get all Users')
-  })
+      User.findOne({email: req.tokenDetails.email}, (err, user) => {
+          if (err) {
+              res.status(400).send(err);
+          } else {
+              if (user){
+                  user = {
+                      email: user.email,
+                      profile: user.profile
+                  };
+                  res.send({user});
+              } else {
+                  res.status(400).send({msg: 'User does not exist'});
+              }
+          }
+      });
+  });
 
 /* Add user to organisation. */
 router.post('/join-organisation', function(req, res) {
@@ -39,11 +53,6 @@ router.post('/join-organisation', function(req, res) {
           }
       }
   });
-});
-
-/* GET user profile. */
-router.get('/profile', function(req, res, next) {
-  res.send(req.user);
 });
 
 module.exports = router;

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {User} from "./user";
+import {CurrentUser} from "./user";
 import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
@@ -8,8 +8,9 @@ import {BehaviorSubject, Observable} from "rxjs/index";
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
-  user: User;
+  user: CurrentUser;
   authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient) {
@@ -21,7 +22,7 @@ export class AuthService {
 
   login(email: string, password: string, remember: boolean) {
     const url = 'api/auth/login';
-    return this.http.post<User>(url, {email: email, password: password})
+    return this.http.post<CurrentUser>(url, {email: email, password: password})
       .pipe(
         tap(user => {
           if (user && user.token){
@@ -41,7 +42,7 @@ export class AuthService {
     return this.http.post<{created}>('/api/auth/user', {firstName: firstName, lastName: lastName, email: email, password: password});
   }
 
-  setUser(user: User, remember: boolean) {
+  setUser(user: CurrentUser, remember: boolean) {
     this.user = user;
     if (user.user.profile.organisation.organisationId){
       this.toggleAuthStatusChange(true);
