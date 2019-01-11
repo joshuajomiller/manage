@@ -19,4 +19,9 @@ export class MyInfoComponent implements OnInit {
     })
   }
 
+  saveUserDetails(user: User){
+    this.userService.updateUserDetails(user).subscribe(res => {
+      console.log(res);
+    })
+  }
 }

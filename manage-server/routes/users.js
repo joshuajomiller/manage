@@ -17,7 +17,23 @@ router.route('/')
                       email: user.email,
                       profile: user.profile
                   };
-                  res.send({user});
+                  res.send(user);
+              } else {
+                  res.status(400).send({msg: 'User does not exist'});
+              }
+          }
+      });
+  })
+  .put(function (req, res) {
+      User.findOne({email: req.tokenDetails.email}, (err, user) => {
+          if (err) {
+              res.status(400).send(err);
+          } else {
+              if (user){
+                  user.profile.details = req.body.details;
+                  user.save(() => {
+                      res.send({joined: true});
+                  });
               } else {
                   res.status(400).send({msg: 'User does not exist'});
               }

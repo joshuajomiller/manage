@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
 import {FormBuilder, Validators, FormArray} from '@angular/forms';
 import {User} from "../../auth/user";
 
@@ -10,14 +10,15 @@ import {User} from "../../auth/user";
 export class PersonalDetailsComponent implements OnInit, OnChanges {
 
   @Input() user: User;
+  @Output() userDetailsSubmit = new EventEmitter<User>();
 
   public personalDetailsForm;
 
   constructor(private fb: FormBuilder) {
     this.personalDetailsForm = this.fb.group({
-      firstName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
+      firstName: [''],
+      lastName: [''],
+      email: [''],
       phone: [''],
       companyPosition: [''],
       birthDate: ['']
@@ -28,19 +29,20 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.personalDetailsForm.value);
+    this.userDetailsSubmit.emit(this.personalDetailsForm.value);
   }
 
   ngOnChanges() {
-    this.personalDetailsForm = this.fb.group({
-      firstName: [this.user.profile.details.firstName, Validators.required],
-      lastName: [this.user.profile.details.lastName, Validators.required],
-      email: [this.user.email, [Validators.required, Validators.email]],
-      phone: [this.user.profile.details.phone],
-      companyPosition: ['', Validators.required],
-      birthDate: [this.user.profile.details.birthDate]
-    });
+    if (this.user && this.user.profile) {
+      this.personalDetailsForm = this.fb.group({
+        firstName: [this.user.profile.details.firstName, Validators.required],
+        lastName: [this.user.profile.details.lastName, Validators.required],
+        email: [this.user.email, [Validators.required, Validators.email]],
+        phone: [this.user.profile.details.phone],
+        companyPosition: [''],
+        birthDate: [this.user.profile.details.birthDate]
+      });
+    }
   }
 
 }
