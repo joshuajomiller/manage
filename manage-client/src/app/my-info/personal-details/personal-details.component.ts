@@ -20,7 +20,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
       lastName: [''],
       email: [''],
       phone: [''],
-      companyPosition: [''],
       birthDate: ['']
     });
   }
@@ -39,7 +38,6 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
         lastName: [this.user.profile.details.lastName, Validators.required],
         email: [this.user.email, [Validators.required, Validators.email]],
         phone: [this.user.profile.details.phone],
-        companyPosition: [''],
         birthDate: [this.user.profile.details.birthDate]
       });
     }

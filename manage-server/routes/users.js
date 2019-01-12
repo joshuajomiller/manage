@@ -30,7 +30,7 @@ router.route('/')
               res.status(400).send(err);
           } else {
               if (user){
-                  user.profile.details = req.body.details;
+                  user.profile.details = req.body;
                   user.save(() => {
                       res.send({joined: true});
                   });

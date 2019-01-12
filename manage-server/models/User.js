@@ -13,7 +13,6 @@ const userSchema = new mongoose.Schema({
           phone: String,
           position: String,
           birthDate: Date,
-          dietaryRestrictions: String,
           location: String,
           picture: String
       },
