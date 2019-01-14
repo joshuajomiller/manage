@@ -8,7 +8,9 @@ router.route('/')
 
 /* GET user details. */
   .get(function (req, res) {
-    User.findOne({email: req.tokenDetails.email}, (err, user) => {
+    User.findOne({email: req.tokenDetails.email}).
+    populate('profile.organisation').
+    exec((err, user) => {
       if (err) {
         res.status(400).send(err);
       } else {
@@ -17,6 +19,10 @@ router.route('/')
           let currentUser = {
             email: user.email,
             profile: user.profile
+          };
+          currentUser.profile.organisation = {
+            name: currentUser.profile.organisation.name,
+            url: currentUser.profile.organisation.url,
           };
           let birthDate = new Date(currentUser.profile.details.birthDate);
           currentUser.profile.details.birthDate = {
@@ -52,19 +58,17 @@ router.route('/')
 
 /* Add user to organisation. */
 router.post('/join-organisation', function (req, res) {
-  let organisationId = "";
   Organisation.findOne({code: req.body.code}, (err, organisation) => {
     if (err) {
       res.status(400).send({error: err});
     } else {
       if (organisation) {
-        organisationId = organisation._id;
         User.findOne({email: req.tokenDetails.email}, (err, user) => {
           if (err) {
             res.status(400).send(err);
           } else {
             if (user) {
-              user.profile.organisation.organisationId = organisationId;
+              user.profile.organisation = organisation._id;
               user.save(() => {
                 res.send({joined: true});
               });
@@ -74,7 +78,7 @@ router.post('/join-organisation', function (req, res) {
           }
         });
       } else {
-        res.status(400).send({msg: 'Company does not exist'});
+        res.status(400).send({msg: 'Organisation does not exist'});
       }
     }
   });

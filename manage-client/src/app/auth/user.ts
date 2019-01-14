@@ -6,10 +6,8 @@ export class User {
   email: string;
   profile: {
     details: UserDetails,
-    organisation: {
-      organisationId: string,
-      managerId: string
-    },
+    organisation: string,
+    managerId: string,
     taskManagementId: string,
     taskManagementUsername: string
   }

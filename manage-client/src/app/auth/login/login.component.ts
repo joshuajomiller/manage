@@ -19,14 +19,13 @@ export class LoginComponent implements OnInit {
   constructor( private authService: AuthService, private router: Router) {
     this.authService.logout();
   }
-
   ngOnInit() {}
 
   login() {
     this.authService.login(this.email, this.password, this.remember)
       .subscribe(user => {
         if (user && user.token) {
-          if (user.user.profile.organisation.organisationId){
+          if (user.user.profile.organisation){
             this.router.navigate(['/my-info']);
           } else {
             this.router.navigate(['/login/add-organisation']);

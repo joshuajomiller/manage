@@ -1,5 +1,6 @@
 const bcrypt = require('bcrypt-nodejs');
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 const userSchema = new mongoose.Schema({
   email: { type: String, unique: true },
@@ -16,10 +17,8 @@ const userSchema = new mongoose.Schema({
           location: String,
           picture: String
       },
-      organisation:{
-          organisationId: String,
-          managerId: String
-      },
+      organisation:{ type: Schema.Types.ObjectId, ref: 'Organisation' },
+      manager: { type: Schema.Types.ObjectId, ref: 'User' },
       taskManagementId: String,
       taskManagementUsername: String
   }

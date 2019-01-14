@@ -44,7 +44,7 @@ export class AuthService {
 
   setUser(user: CurrentUser, remember: boolean) {
     this.user = user;
-    if (user.user.profile.organisation.organisationId){
+    if (user.user.profile.organisation){
       this.toggleAuthStatusChange(true);
     }
     if (remember){
