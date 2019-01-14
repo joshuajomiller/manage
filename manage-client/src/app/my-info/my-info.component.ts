@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {UserService} from "../core/user.service";
-import {User} from "../auth/user";
+import {User, UserDetails} from "../auth/user";
 
 @Component({
   selector: 'app-my-info',
@@ -19,9 +19,14 @@ export class MyInfoComponent implements OnInit {
     })
   }
 
-  saveUserDetails(user: User){
-    this.userService.updateUserDetails(user).subscribe(res => {
-      console.log(res);
+  savePersonalDetails(userDetails: UserDetails){
+    this.user.profile.details = userDetails;
+    this.updateUser();
+  }
+
+  updateUser(){
+    this.userService.updateUserDetails(this.user).subscribe(res => {
+
     })
   }
 }

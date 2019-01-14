@@ -5,16 +5,7 @@ export class CurrentUser {
 export class User {
   email: string;
   profile: {
-    details: {
-      firstName: string,
-      lastName: string,
-      phone: string,
-      position: string,
-      birthDate: Date,
-      dietaryRestrictions: string,
-      location: string,
-      picture: string
-    },
+    details: UserDetails,
     organisation: {
       organisationId: string,
       managerId: string
@@ -22,4 +13,15 @@ export class User {
     taskManagementId: string,
     taskManagementUsername: string
   }
+}
+
+export class UserDetails{
+  firstName: string;
+  lastName: string;
+  phone: string;
+  position: string;
+  birthDate: Date;
+  dietaryRestrictions: string;
+  location: string;
+  picture: string;
 }
