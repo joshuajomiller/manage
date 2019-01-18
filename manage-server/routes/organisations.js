@@ -3,12 +3,9 @@ let router = express.Router();
 const Organisation = require("../models/Organisation");
 
 router.route('/')
-
-/* GET organisation listing. */
     .get(function (req, res) {
         res.send('Get all organisations')
     })
-
     /* POST new organisation. */
     .post(function (req, res) {
         generateOrganisationCode()
@@ -28,6 +25,26 @@ router.route('/')
             });
 
     });
+
+router.route('/code/:code')
+  .get(function (req, res) {
+    Organisation.findOne({code: req.params.code}, (err, organisation) => {
+      if (err) {
+        res.status(400).send({error: err});
+      } else {
+        if (organisation) {
+            let currentOrganisation = {
+              name: organisation.name,
+              url: organisation.url,
+              id: organisation._id
+            };
+          res.send(currentOrganisation);
+        } else {
+          res.status(400).send({msg: 'Organisation does not exist'});
+        }
+      }
+    });
+  });
 
 module.exports = router;
 

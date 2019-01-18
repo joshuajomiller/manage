@@ -6,7 +6,7 @@ export class User {
   email: string;
   profile: {
     details: UserDetails,
-    organisation: string,
+    organisation: OrganisationDetails,
     managerId: string,
     taskManagementId: string,
     taskManagementUsername: string
@@ -22,4 +22,9 @@ export class UserDetails{
   dietaryRestrictions: string;
   location: string;
   picture: string;
+}
+
+export class OrganisationDetails{
+  name: string;
+  url: string;
 }

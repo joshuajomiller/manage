@@ -23,6 +23,7 @@ router.route('/')
           currentUser.profile.organisation = {
             name: currentUser.profile.organisation.name,
             url: currentUser.profile.organisation.url,
+            id: currentUser.profile.organisation._id
           };
           let birthDate = new Date(currentUser.profile.details.birthDate);
           currentUser.profile.details.birthDate = {

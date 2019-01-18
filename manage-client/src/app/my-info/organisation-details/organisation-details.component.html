@@ -1,17 +1,17 @@
-<div class="mt-4">
-  <h3 class="mb-3">Company Details</h3>
-  <form [formGroup]="companyDetailsForm">
+<div class="mt-4" *ngIf="user">
+  <h3 class="mb-3">Organisation Details</h3>
+  <form [formGroup]="organisationDetailsForm">
     <div class="form-group col">
-      <label for="companyNameInput">Company Name:</label>
-      <input formControlName="companyName" type="text" class="form-control" id="companyNameInput" disabled>
+      <label for="organisationNameInput">Organisation Name:</label>
+      <input formControlName="organisationName" type="text" class="form-control" id="organisationNameInput" disabled>
     </div>
 
     <div class="form-group col">
-      <label for="companyURLInput">URL:</label>
-      <input formControlName="companyURL" type="text" class="form-control" id="companyURLInput" disabled>
+      <label for="organisationURLInput">URL:</label>
+      <input formControlName="organisationURL" type="text" class="form-control" id="organisationURLInput" disabled>
     </div>
 
-    <div formGroupName="companyTeamsForm">
+    <div formGroupName="organisationTeamsForm">
       <div class="form-group col">
         <label for="teamNameInput">Team Name:</label>
         <input formControlName="teamName" type="text" class="form-control" id="teamNameInput" disabled>

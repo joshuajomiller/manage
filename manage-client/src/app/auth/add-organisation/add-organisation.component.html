@@ -11,7 +11,7 @@
               <input type="email" class="form-control" id="ompanyCode" aria-describedby="companyCodeHelp"
                      placeholder="Your organisation code..." [(ngModel)]="organisationCode" name="company-code">
             </div>
-            <button type="submit" class="btn btn-primary float-right" (click)="joinOrganisation()">Login</button>
+            <button type="submit" class="btn btn-primary float-right" (click)="getOrganisationByCode()">Join</button>
           </form>
         </div>
       </div>
@@ -29,7 +29,7 @@
               <input type="text" class="form-control" id="loginPassword" placeholder="Organisation URL"
                      [(ngModel)]="organisationUrl" name="organisationUrl">
             </div>
-            <button type="submit" class="btn btn-primary float-right" (click)="createOrganisation()">Login</button>
+            <button type="submit" class="btn btn-primary float-right" (click)="createOrganisation()">Create</button>
           </form>
         </div>
       </div>

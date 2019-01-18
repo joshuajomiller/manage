@@ -1,4 +1,4 @@
-<div class="mt-4">
+<div class="mt-4" *ngIf="user">
   <h3 class="mb-3">Personal Details</h3>
   <form [formGroup]="personalDetailsForm" (ngSubmit)="onSubmit()">
     <div class="form-group col">

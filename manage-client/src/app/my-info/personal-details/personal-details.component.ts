@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output} from '@angular/core';
-import {FormBuilder, Validators, FormArray} from '@angular/forms';
+import {FormBuilder, Validators, FormArray, FormGroup} from '@angular/forms';
 import {User} from "../../auth/user";
 
 @Component({
@@ -12,17 +12,9 @@ export class PersonalDetailsComponent implements OnInit, OnChanges {
   @Input() user: User;
   @Output() userDetailsSubmit = new EventEmitter<User>();
 
-  public personalDetailsForm;
+  public personalDetailsForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
-    this.personalDetailsForm = this.fb.group({
-      firstName: [''],
-      lastName: [''],
-      email: [''],
-      phone: [''],
-      birthDate: ['']
-    });
-  }
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
   }

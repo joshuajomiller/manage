@@ -5,6 +5,7 @@ import { AuthRoutingModule } from './auth-routing.module';
 import { LoginComponent } from "./login/login.component";
 import { FormsModule } from "@angular/forms";
 import { AddOrganisationComponent } from './add-organisation/add-organisation.component';
+import { ConfirmJoinOrganisationComponent } from './confirm-join-organisation/confirm-join-organisation.component';
 
 @NgModule({
   imports: [
@@ -13,8 +14,10 @@ import { AddOrganisationComponent } from './add-organisation/add-organisation.co
     FormsModule
   ],
   exports: [
-    LoginComponent
+    LoginComponent,
+    ConfirmJoinOrganisationComponent
   ],
-  declarations: [LoginComponent, AddOrganisationComponent]
+  declarations: [LoginComponent, AddOrganisationComponent, ConfirmJoinOrganisationComponent],
+  entryComponents: [ConfirmJoinOrganisationComponent]
 })
 export class AuthModule { }

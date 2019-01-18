@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CurrentUser} from "./user";
+import {CurrentUser, OrganisationDetails} from "./user";
 import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
@@ -68,6 +68,10 @@ export class AuthService {
 
   toggleAuthStatusChange(status: boolean) {
     this.authStatusChange.next(status);
+  }
+
+  getOrganisationByCode(organisationCode) {
+    return this.http.get<OrganisationDetails>('/api/organisation/code/'+ organisationCode);
   }
 
   joinOrganisation(organisationCode) {

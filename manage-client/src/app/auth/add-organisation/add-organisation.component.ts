@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../auth.service";
 import {Router} from "@angular/router";
+import {ConfirmJoinOrganisationComponent} from "../confirm-join-organisation/confirm-join-organisation.component";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-add-organisation',
@@ -12,9 +14,18 @@ export class AddOrganisationComponent implements OnInit {
   organisationName: string;
   organisationUrl: string;
 
-  constructor(private authService: AuthService, private router: Router) { }
+  constructor(private authService: AuthService, private router: Router, private modalService: NgbModal) { }
 
   ngOnInit() {
+  }
+
+  getOrganisationByCode(code){
+    this.authService.getOrganisationByCode(code || this.organisationCode).subscribe(res => {
+      if (res){
+          const modalRef = this.modalService.open(ConfirmJoinOrganisationComponent);
+          modalRef.componentInstance.name = 'ConfirmJoinOrganisation';
+      }
+    });
   }
 
   joinOrganisation(code){
