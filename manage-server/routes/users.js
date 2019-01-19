@@ -59,7 +59,7 @@ router.route('/')
 
 /* Add user to organisation. */
 router.post('/join-organisation', function (req, res) {
-  Organisation.findOne({code: req.body.code}, (err, organisation) => {
+  Organisation.findById(req.body.organisationId, (err, organisation) => {
     if (err) {
       res.status(400).send({error: err});
     } else {

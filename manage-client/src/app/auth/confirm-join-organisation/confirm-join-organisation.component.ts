@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {OrganisationDetails, User} from "../user";
+import {NgbActiveModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-confirm-join-organisation',
@@ -7,9 +9,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmJoinOrganisationComponent implements OnInit {
 
-  constructor() { }
+  @Input() org: OrganisationDetails;
+  @Output() orgConfirm = new EventEmitter<OrganisationDetails>();
+
+  constructor(public activeModal: NgbActiveModal) { }
 
   ngOnInit() {
   }
 
+  confirm(){
+    this.orgConfirm.emit(this.org);
+    this.activeModal.close();
+  }
+
+  cancel(){
+    this.activeModal.close();
+  }
 }

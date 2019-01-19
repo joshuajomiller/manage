@@ -23,13 +23,18 @@ export class AddOrganisationComponent implements OnInit {
     this.authService.getOrganisationByCode(code || this.organisationCode).subscribe(res => {
       if (res){
           const modalRef = this.modalService.open(ConfirmJoinOrganisationComponent);
-          modalRef.componentInstance.name = 'ConfirmJoinOrganisation';
+          modalRef.componentInstance.org = res;
+          modalRef.componentInstance.orgConfirm.subscribe(org => {
+            if (org){
+              this.joinOrganisation(org.id)
+            }
+          });
       }
     });
   }
 
-  joinOrganisation(code){
-    this.authService.joinOrganisation(code || this.organisationCode).subscribe(res => {
+  joinOrganisation(id){
+    this.authService.joinOrganisation(id).subscribe(res => {
       if (res.joined){
         this.authService.toggleAuthStatusChange(true);
         this.router.navigate(['/my-info']);
@@ -39,8 +44,8 @@ export class AddOrganisationComponent implements OnInit {
 
   createOrganisation(){
     this.authService.createOrganisation(this.organisationName, this.organisationUrl).subscribe(res => {
-      if (res && res.code){
-        this.joinOrganisation(res.code);
+      if (res && res.id){
+        this.joinOrganisation(res.id);
       }
     });
   }

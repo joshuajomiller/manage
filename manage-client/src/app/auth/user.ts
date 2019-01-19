@@ -27,4 +27,6 @@ export class UserDetails{
 export class OrganisationDetails{
   name: string;
   url: string;
+  code: string;
+  id: string;
 }

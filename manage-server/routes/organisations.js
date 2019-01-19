@@ -13,7 +13,8 @@ router.route('/')
                 let newOrganisation = {
                     name: req.body.organisationName,
                     url: req.body.organisationUrl,
-                    code
+                    code,
+                    id: _id
                 };
 
                 Organisation.create(newOrganisation, function (err, data) {
@@ -36,6 +37,7 @@ router.route('/code/:code')
             let currentOrganisation = {
               name: organisation.name,
               url: organisation.url,
+              code: organisation.code,
               id: organisation._id
             };
           res.send(currentOrganisation);

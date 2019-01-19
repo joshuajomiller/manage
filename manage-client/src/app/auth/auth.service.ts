@@ -74,11 +74,11 @@ export class AuthService {
     return this.http.get<OrganisationDetails>('/api/organisation/code/'+ organisationCode);
   }
 
-  joinOrganisation(organisationCode) {
-    return this.http.post<{joined: boolean}>('/api/user/join-organisation', {organisationCode});
+  joinOrganisation(organisationId) {
+    return this.http.post<{joined: boolean}>('/api/user/join-organisation', {organisationId});
   }
 
   createOrganisation(organisationName, organisationUrl) {
-    return this.http.post<{code: string}>('/api/organisation/', {organisationName, organisationUrl})
+    return this.http.post<OrganisationDetails>('/api/organisation/', {organisationName, organisationUrl})
   }
 }
