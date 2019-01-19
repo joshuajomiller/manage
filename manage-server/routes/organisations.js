@@ -13,15 +13,14 @@ router.route('/')
                 let newOrganisation = {
                     name: req.body.organisationName,
                     url: req.body.organisationUrl,
-                    code,
-                    id: _id
+                    code
                 };
 
                 Organisation.create(newOrganisation, function (err, data) {
                     if (err) {
                         res.status(400).send(err)
                     }
-                    res.send({code: data.code});
+                    res.send({id: data._id});
                 });
             });
 
