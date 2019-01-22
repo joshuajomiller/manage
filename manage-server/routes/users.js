@@ -2,6 +2,7 @@ let express = require('express');
 let router = express.Router();
 const User = require("../models/User");
 const Organisation = require("../models/Organisation");
+const Team = require("../models/Team");
 const jwt = require('jsonwebtoken');
 
 router.route('/')
@@ -80,6 +81,34 @@ router.post('/join-organisation', function (req, res) {
         });
       } else {
         res.status(400).send({msg: 'Organisation does not exist'});
+      }
+    }
+  });
+});
+
+/* Add user to team. */
+router.post('/join-team', function (req, res) {
+  Team.findById(req.body.teamId, (err, team) => {
+    if (err) {
+      res.status(400).send({error: err});
+    } else {
+      if (team) {
+        User.findOne({email: req.tokenDetails.email}, (err, user) => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            if (user) {
+              user.profile.team = team._id;
+              user.save(() => {
+                res.send({joined: true});
+              });
+            } else {
+              res.status(400).send({msg: 'User does not exist'});
+            }
+          }
+        });
+      } else {
+        res.status(400).send({msg: 'Team does not exist'});
       }
     }
   });
