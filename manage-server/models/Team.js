@@ -6,6 +6,6 @@ const teamSchema = new mongoose.Schema({
     manager: { type: Schema.Types.ObjectId, ref: 'User' }
 }, { timestamps: true });
 
-const Team = mongoose.model('Organisation', teamSchema);
+const Team = mongoose.model('Team', teamSchema);
 
 module.exports = Team;
