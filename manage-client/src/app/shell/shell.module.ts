@@ -4,16 +4,19 @@ import { FormsModule } from "@angular/forms";
 import { AppRoutingModule } from "../app-routing.module";
 import { HeaderComponent } from './header/header.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { ShellComponent } from './shell/shell.component';
+import { ShellRoutingModule } from "./shell-routing.module";
 
 @NgModule({
   imports: [
     FormsModule,
     CommonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ShellRoutingModule,
   ],
   exports: [
     HeaderComponent, SidebarComponent
   ],
-  declarations: [HeaderComponent, SidebarComponent]
+  declarations: [HeaderComponent, SidebarComponent, ShellComponent]
 })
 export class ShellModule { }

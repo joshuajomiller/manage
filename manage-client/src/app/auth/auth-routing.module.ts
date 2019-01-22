@@ -5,7 +5,10 @@ import {AddOrganisationComponent} from "./add-organisation/add-organisation.comp
 
 const routes: Routes = [
   {
-    path: '',
+    path: '', redirectTo: 'login', pathMatch: 'full'
+  },
+  {
+    path: 'login',
     component: LoginComponent
   },
   {

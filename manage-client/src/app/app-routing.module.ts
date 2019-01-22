@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {ShellComponent} from "./shell/shell/shell.component";
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: 'auth',
     loadChildren: 'src/app/auth/auth.module#AuthModule'
   },
   {
-    path: 'my-info',
-    loadChildren: 'src/app/my-info/my-info.module#MyInfoModule'
-  },
-  {
-    path: 'team',
-    loadChildren: 'src/app/team/team.module#TeamModule'
-  },
-  {
-    path: '',
-    redirectTo: '/login',
+    path: 'login',
+    redirectTo: 'auth',
     pathMatch: 'full'
-  }
+  },
+  // {
+  //   path: '',
+  //   component: ShellComponent,
+  //   children: [
+  //     { path: 'my-info', component: ShellComponent }
+  //   ]
+  // }
 ];
 
 @NgModule({

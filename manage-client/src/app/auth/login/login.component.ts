@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
           if (user.user.profile.organisation){
             this.router.navigate(['/my-info']);
           } else {
-            this.router.navigate(['/login/add-organisation']);
+            this.router.navigate(['/auth/add-organisation']);
           }
         }
       });
