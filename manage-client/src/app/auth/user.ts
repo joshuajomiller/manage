@@ -33,6 +33,7 @@ export class OrganisationDetails{
 }
 
 export class TeamDetails{
+  id: string;
   name: string;
   manager: string;
   organisationId: string;

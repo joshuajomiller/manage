@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {AuthService} from "../auth.service";
+import {TeamDetails} from "../user";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-team',
@@ -7,9 +10,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTeamComponent implements OnInit {
 
-  constructor() { }
+  teams: TeamDetails[];
+  teamName: string;
+  teamId: string;
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    this.getTeams();
   }
 
+  getTeams(){
+    this.authService.getTeams().subscribe(teams=>{
+      this.teams = teams;
+    })
+  }
+
+  createTeam() {
+    this.authService.createTeam(this.teamName).subscribe(team => {
+      this.joinTeam(team.id);
+    })
+  }
+
+  joinTeam(teamId){
+    this.authService.joinTeam(teamId || this.teamId).subscribe(teamId => {
+      this.router.navigate(['/my-info']);
+    })
+  }
 }

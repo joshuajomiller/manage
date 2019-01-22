@@ -82,7 +82,15 @@ export class AuthService {
     return this.http.post<OrganisationDetails>('/api/organisation/', {organisationName, organisationUrl})
   }
 
-  getTeamsByOrganisation(organisationId){
-    return this.http.get<TeamDetails>(`/api/organisation/${organisationId}/teams`)
+  getTeams(){
+    return this.http.get<TeamDetails[]>(`/api/teams`)
+  }
+
+  createTeam(teamName){
+    return this.http.post<TeamDetails>('/api/teams/', {teamName})
+  }
+
+  joinTeam(teamId){
+    return this.http.post<{joined: boolean}>('/api/user/join-team', {teamId})
   }
 }

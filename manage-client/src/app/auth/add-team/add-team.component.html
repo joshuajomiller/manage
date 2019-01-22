@@ -7,29 +7,24 @@
         </div>
         <div class="card-body">
           <form>
-            <div class="form-group">
-              <input type="text" class="form-control" id="ompanyCode" aria-describedby="companyCodeHelp"
-                     placeholder="Your organisation code..." [(ngModel)]="organisationCode" name="company-code">
+            <div class="form-group col-12">
+              <label class="col-12">
+                Join an existing team in your organisation:
+                <select class="form-control" [(ngModel)]="teamId" name="team">
+                  <option *ngFor="let team of teams" [value]="team.id">{{ team.name }}</option>
+                </select>
+              </label>
+              <button type="submit" class="btn btn-primary float-right" (click)="joinTeam()">Join</button>
             </div>
-            <button type="submit" class="btn btn-primary float-right" (click)="getOrganisationByCode()">Join</button>
-          </form>
-        </div>
-      </div>
-      <div class="card mt-3">
-        <div class="card-header">
-          <h3>Create new organisation</h3>
-        </div>
-        <div class="card-body">
-          <form>
-            <div class="form-group">
-              <input type="text" class="form-control" id="organisationName" aria-describedby="organisationNameHelp"
-                     placeholder="Organisation name" [(ngModel)]="organisationName" name="organisationName">
+
+            <div class="form-group col-12">
+              <label class="col-12 mt-4">
+                Or, create a new team
+                <input type="text" class="form-control" [(ngModel)]="teamName" name="teamName" placeholder="Team name">
+              </label>
+              <small class="form-text text-muted">You will be set as the team manager. You can change this when someone else joins your team.</small>
+              <button type="submit" class="btn btn-primary float-right" (click)="createTeam()">Create</button>
             </div>
-            <div class="form-group">
-              <input type="text" class="form-control" id="loginPassword" placeholder="Organisation URL"
-                     [(ngModel)]="organisationUrl" name="organisationUrl">
-            </div>
-            <button type="submit" class="btn btn-primary float-right" (click)="createOrganisation()">Create</button>
           </form>
         </div>
       </div>

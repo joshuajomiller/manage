@@ -25,8 +25,10 @@ export class LoginComponent implements OnInit {
     this.authService.login(this.email, this.password, this.remember)
       .subscribe(user => {
         if (user && user.token) {
-          if (user.user.profile.organisation){
+          if (user.user.profile.team){
             this.router.navigate(['/my-info']);
+          } else if (user.user.profile.organisation) {
+            this.router.navigate(['/auth/add-team']);
           } else {
             this.router.navigate(['/auth/add-organisation']);
           }

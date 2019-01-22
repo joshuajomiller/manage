@@ -48,27 +48,6 @@ router.route('/code/:code')
     });
   });
 
-router.route('/:id/teams')
-  .get(function (req, res) {
-    Team.findOne({organisationId: req.params.id}, (err, teams) => {
-      if (err) {
-        res.status(400).send({error: err});
-      } else {
-        if (teams) {
-            let currentOrganisation = {
-              name: organisation.name,
-              url: organisation.url,
-              code: organisation.code,
-              id: organisation._id
-            };
-          res.send(currentOrganisation);
-        } else {
-          res.status(400).send({msg: 'Organisation does not exist'});
-        }
-      }
-    });
-  });
-
 module.exports = router;
 
 function generateOrganisationCode() {

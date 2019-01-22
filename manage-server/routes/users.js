@@ -11,6 +11,7 @@ router.route('/')
   .get(function (req, res) {
     User.findOne({email: req.tokenDetails.email}).
     populate('profile.organisation').
+    populate('profile.team').
     exec((err, user) => {
       if (err) {
         res.status(400).send(err);
@@ -24,6 +25,11 @@ router.route('/')
           currentUser.profile.organisation = {
             name: currentUser.profile.organisation.name,
             url: currentUser.profile.organisation.url,
+            id: currentUser.profile.organisation._id
+          };
+          currentUser.profile.team = {
+            name: currentUser.profile.team.name,
+            manager: currentUser.profile.team.manager,
             id: currentUser.profile.organisation._id
           };
           let birthDate = new Date(currentUser.profile.details.birthDate);
@@ -98,10 +104,14 @@ router.post('/join-team', function (req, res) {
             res.status(400).send(err);
           } else {
             if (user) {
-              user.profile.team = team._id;
-              user.save(() => {
-                res.send({joined: true});
-              });
+              if (user.profile.organisation.toString() === team.organisationId){
+                user.profile.team = team._id;
+                user.save(() => {
+                  res.send({joined: true});
+                });
+              } else {
+                res.status(400).send({msg: 'User is not allowed to join this team'});
+              }
             } else {
               res.status(400).send({msg: 'User does not exist'});
             }
