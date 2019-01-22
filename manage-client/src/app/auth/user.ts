@@ -7,6 +7,7 @@ export class User {
   profile: {
     details: UserDetails,
     organisation: OrganisationDetails,
+    team: TeamDetails,
     managerId: string,
     taskManagementId: string,
     taskManagementUsername: string
@@ -29,4 +30,10 @@ export class OrganisationDetails{
   url: string;
   code: string;
   id: string;
+}
+
+export class TeamDetails{
+  name: string;
+  manager: string;
+  organisationId: string;
 }

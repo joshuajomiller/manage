@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CurrentUser, OrganisationDetails} from "./user";
+import {CurrentUser, OrganisationDetails, TeamDetails} from "./user";
 import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
@@ -80,5 +80,9 @@ export class AuthService {
 
   createOrganisation(organisationName, organisationUrl) {
     return this.http.post<OrganisationDetails>('/api/organisation/', {organisationName, organisationUrl})
+  }
+
+  getTeamsByOrganisation(organisationId){
+    return this.http.get<TeamDetails>(`/api/organisation/${organisationId}/teams`)
   }
 }
