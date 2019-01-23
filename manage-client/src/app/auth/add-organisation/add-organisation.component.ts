@@ -37,7 +37,7 @@ export class AddOrganisationComponent implements OnInit {
     this.authService.joinOrganisation(id).subscribe(res => {
       if (res.joined){
         this.authService.toggleAuthStatusChange(true);
-        this.router.navigate(['/my-info']);
+        this.router.navigate(['/auth/add-team']);
       }
     });
   }

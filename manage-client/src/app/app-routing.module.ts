@@ -11,14 +11,7 @@ const routes: Routes = [
     path: 'login',
     redirectTo: 'auth',
     pathMatch: 'full'
-  },
-  // {
-  //   path: '',
-  //   component: ShellComponent,
-  //   children: [
-  //     { path: 'my-info', component: ShellComponent }
-  //   ]
-  // }
+  }
 ];
 
 @NgModule({

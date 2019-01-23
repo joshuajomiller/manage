@@ -9,11 +9,6 @@ import {AuthService} from "../auth.service";
 })
 export class LoginComponent implements OnInit {
 
-  public firstName: string;
-  public lastName: string;
-  public email: string;
-  public password: string;
-  public remember: boolean;
   public showLogin = true;
 
   constructor( private authService: AuthService, private router: Router) {
@@ -21,8 +16,8 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {}
 
-  login() {
-    this.authService.login(this.email, this.password, this.remember)
+  login({email, password, remember}) {
+    this.authService.login(email, password, remember)
       .subscribe(user => {
         if (user && user.token) {
           if (user.user.profile.team){
@@ -36,11 +31,11 @@ export class LoginComponent implements OnInit {
       });
   }
 
-  register() {
-    this.authService.register(this.firstName, this.lastName, this.email, this.password, this.remember)
+  register({firstName, lastName, email, password, remember}) {
+    this.authService.register(firstName, lastName, email, password, remember)
       .subscribe(status => {
         if (status && status.created) {
-          this.login();
+          this.login({email, password, remember});
         }
       });
   }

@@ -50,9 +50,9 @@ router.post('/user', function (req, res) {
                 User.create(newUser, function (err, small) {
                     if (err) {
                         res.status(400).send(err)
+                    } else {
+                      res.send({created: true});
                     }
-                    //const token = jwt.sign(newUser, 'your_jwt_secret_123');
-                    res.send({created: true});
                 });
             }
         }
