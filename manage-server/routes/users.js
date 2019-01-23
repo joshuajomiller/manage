@@ -9,10 +9,8 @@ router.route('/')
 
 /* GET user details. */
   .get(function (req, res) {
-    User.findOne({email: req.tokenDetails.email}).
-    populate('profile.organisation').
-    populate('profile.team').
-    exec((err, user) => {
+    User.findOne({email: req.tokenDetails.email}).populate('profile.organisation')
+      .populate({path: 'profile.team', populate: {path: 'manager'}}).exec((err, user) => {
       if (err) {
         res.status(400).send(err);
       } else {
@@ -29,7 +27,11 @@ router.route('/')
           };
           currentUser.profile.team = {
             name: currentUser.profile.team.name,
-            manager: currentUser.profile.team.manager,
+            manager: {
+              id: currentUser.profile.team.manager._id,
+              firstName: currentUser.profile.team.manager.profile.details.firstName,
+              lastName: currentUser.profile.team.manager.profile.details.lastName
+            },
             id: currentUser.profile.organisation._id
           };
           let birthDate = new Date(currentUser.profile.details.birthDate);
@@ -52,7 +54,7 @@ router.route('/')
       } else {
         if (user) {
           let birthDate = req.body.profile.details.birthDate;
-          req.body.profile.details.birthDate = new Date(birthDate.year, birthDate.month-1, birthDate.day).toISOString();
+          req.body.profile.details.birthDate = new Date(birthDate.year, birthDate.month - 1, birthDate.day).toISOString();
           user.profile = req.body.profile;
           user.save(() => {
             res.send({joined: true});
@@ -104,7 +106,7 @@ router.post('/join-team', function (req, res) {
             res.status(400).send(err);
           } else {
             if (user) {
-              if (user.profile.organisation.toString() === team.organisationId){
+              if (user.profile.organisation.toString() === team.organisationId) {
                 user.profile.team = team._id;
                 user.save(() => {
                   res.send({joined: true});
