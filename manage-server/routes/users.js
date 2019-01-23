@@ -126,4 +126,31 @@ router.post('/join-team', function (req, res) {
   });
 });
 
+/* Get user's team */
+router.get('/team', function (req, res) {
+  User.findOne({email: req.tokenDetails.email}).populate('profile.team').exec((err, user) => {
+    if (err) {
+      res.status(400).send(err);
+    } else {
+      if (user) {
+        console.log(user.profile.team);
+        Team.findById(user.profile.team._id, (err, team) => {
+          if (err) {
+            res.status(400).send({error: err});
+          } else {
+            if (team) {
+              res.send(team);
+            } else {
+              res.status(400).send({msg: 'Team does not exist'});
+            }
+          }
+        });
+      } else {
+        res.status(400).send({msg: 'User does not exist'});
+      }
+    }
+  });
+});
+
+
 module.exports = router;
