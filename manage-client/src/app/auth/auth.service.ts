@@ -12,9 +12,10 @@ import {BehaviorSubject, Observable} from "rxjs/index";
 export class AuthService {
   user: CurrentUser;
   authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  public redirectUrl: string;
 
   constructor(private http: HttpClient) {
-    let user = JSON.parse(localStorage.getItem('currentUser'));
+    let user = JSON.parse(localStorage.getItem('currentUser')) || JSON.parse(sessionStorage.getItem('currentUser'));
     if (user){
       this.setUser(user, true);
     }
@@ -35,6 +36,7 @@ export class AuthService {
   logout() {
     this.user = null;
     localStorage.removeItem('currentUser');
+    sessionStorage.removeItem('currentUser');
     this.toggleAuthStatusChange(false);
   }
 
@@ -49,6 +51,8 @@ export class AuthService {
     }
     if (remember){
       localStorage.setItem('currentUser', JSON.stringify(user));
+    } else {
+      sessionStorage.setItem('currentUser', JSON.stringify(user));
     }
   }
 
