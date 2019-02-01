@@ -11,6 +11,7 @@ import { AddTeamComponent } from './add-team/add-team.component';
 import { ConfirmJoinTeamComponent } from './confirm-join-team/confirm-join-team.component';
 import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import { InviteTeamComponent } from './invite-team/invite-team.component';
 
 @NgModule({
   imports: [
@@ -23,7 +24,7 @@ import { RegisterFormComponent } from './register-form/register-form.component';
   exports: [
     LoginComponent
   ],
-  declarations: [LoginComponent, AddOrganisationComponent, ConfirmJoinOrganisationComponent, AddTeamComponent, ConfirmJoinTeamComponent, LoginFormComponent, RegisterFormComponent],
+  declarations: [LoginComponent, AddOrganisationComponent, ConfirmJoinOrganisationComponent, AddTeamComponent, ConfirmJoinTeamComponent, LoginFormComponent, RegisterFormComponent, InviteTeamComponent],
   entryComponents: [ConfirmJoinOrganisationComponent]
 })
 export class AuthModule { }
