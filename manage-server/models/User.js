@@ -18,9 +18,7 @@ const userSchema = new mongoose.Schema({
           picture: String
       },
       organisation:{ type: Schema.Types.ObjectId, ref: 'Organisation' },
-      team:{ type: Schema.Types.ObjectId, ref: 'Team' },
-      taskManagementId: String,
-      taskManagementUsername: String
+      manager:{ type: Schema.Types.ObjectId, ref: 'User' },
   }
 }, { timestamps: true });
 
