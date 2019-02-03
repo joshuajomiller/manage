@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h3 class="card-title float-left mb-4">Login</h3>
-    <h6 class="card-subtitle text-muted float-right mt-2" (click)="toggleCard()">Register</h6>
+    <div class="card-subtitle float-right mt-2 text-link" (click)="toggleCard()">Register</div>
     <form [formGroup]="loginForm" (ngSubmit)="login()">
       <div class="form-group">
         <input type="email" class="form-control" placeholder="Email" formControlName="email" name="email">

@@ -1,7 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+body{
+  font-family: 'Hind Siliguri', sans-serif;
+  background-color: #F7FAFB;
+}
+a, .text-link {
+  font-family: 'Nunito Sans', sans-serif;
+  font-weight: bold;
+  font-size: 1rem;
+  color: #2f5b94;
+  cursor: pointer;
+}
+a:hover,
+.text-link:hover {
+  text-decoration: underline;
+  color: #283044;
+}
 main{
   margin-top: 60px;
 }
 .image-wrapper img{
   max-width: 100%;
+}
+.card {
+  border-radius: 0;
+  box-shadow: 0 0 5px 2px #eee;
+}
+.form-control{
+  border-radius: 0;
 }
