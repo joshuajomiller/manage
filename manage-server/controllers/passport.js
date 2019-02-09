@@ -15,7 +15,7 @@ passport.use(new LocalStrategy({
   },
   function (email, password, done) {
 
-    User.findOne({ email: email.toLowerCase() }, (err, user) => {
+    User.findOne({ email: email.toLowerCase() }).populate('profile.team').exec((err, user) => {
       if (err) { return done(err); }
       if (!user) {
         return done(null, false, { msg: `Email ${email} not found.` });

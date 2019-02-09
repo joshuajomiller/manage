@@ -27,13 +27,17 @@ export class AddTeamComponent implements OnInit {
 
   createTeam() {
     this.authService.createTeam(this.teamName).subscribe(team => {
-      this.joinTeam(team.id);
+      this.joinTeam(team.id, true);
     })
   }
 
-  joinTeam(teamId){
+  joinTeam(teamId, isCreator?){
     this.authService.joinTeam(teamId || this.teamId).subscribe(teamId => {
-      this.router.navigate(['/my-info']);
+      if (isCreator){
+        this.router.navigate(['/auth/invite-team']);
+      } else {
+        this.router.navigate(['/my-info']);
+      }
     })
   }
 }

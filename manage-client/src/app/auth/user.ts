@@ -37,4 +37,5 @@ export class TeamDetails{
   name: string;
   manager: string;
   organisationId: string;
+  members: [string];
 }

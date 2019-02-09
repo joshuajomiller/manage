@@ -3,6 +3,9 @@ body{
   font-family: 'Hind Siliguri', sans-serif;
   background-color: #F7FAFB;
 }
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+}
 a, .text-link {
   font-family: 'Nunito Sans', sans-serif;
   font-weight: bold;

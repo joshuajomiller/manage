@@ -98,7 +98,11 @@ export class AuthService {
     return this.http.post<{joined: boolean}>('/api/user/join-team', {teamId})
   }
 
+  getInvitedTeamMembers(){
+    return this.http.get<{invited: any}>('/api/invite/team')
+  }
+
   inviteTeamMember(email){
-    return this.http.post<{invited: boolean}>('/api/teams/invite', email)
+    return this.http.post<{invited: boolean}>('/api/invite', email)
   }
 }

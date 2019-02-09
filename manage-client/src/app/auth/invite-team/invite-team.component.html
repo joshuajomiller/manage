@@ -1,15 +1,39 @@
-<div class="row justify-content-center">
-  <main role="main" class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
-    <div class="card">
-      <div class="card-body">
-        <h3 class="card-title float-left mb-4">Invite your team members</h3>
-        <form [formGroup]="inviteForm" (ngSubmit)="invite()">
-          <div class="form-group">
-            <input type="email" class="form-control" placeholder="Email" formControlName="email" name="email">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <main role="main" class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+      <div class="card">
+        <div class="card-header">
+          <h3>Invite your team members</h3>
+        </div>
+        <div class="card-body">
+          <div class="row">
+            <form [formGroup]="inviteForm" (ngSubmit)="invite()" class="col">
+              <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email" formControlName="email" name="email">
+              </div>
+              <div class="col">
+                <button type="submit" class="btn btn-primary float-right col" [disabled]="!inviteForm.valid">Send invite
+                </button>
+              </div>
+            </form>
           </div>
-          <button type="submit" class="btn btn-primary float-right" [disabled]="!inviteForm.valid">Send invite</button>
-        </form>
+          <div class="row">
+            <div class="col">
+              <hr>
+              <div *ngIf="invitedMembers.length">
+                <div *ngFor="let invite of invitedMembers">
+                  {{invite.email}} - {{invite.status}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col">
+              <button type="button" class="btn btn-outline-secondary float-right" routerLink="/my-info">Continue to dashboard</button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+  </div>
 </div>
