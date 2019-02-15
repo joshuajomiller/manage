@@ -26,12 +26,26 @@
                   </small>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="weekly" formControlName="weekly" name="weekly">
+                  <input type="checkbox" class="form-check-input" id="weekly" formControlName="weekly" name="weekly" aria-describedby="weeklyHelpBlock">
                   <label class="form-check-label" for="weekly">Weekly feedback</label>
+                  <small class="form-text text-muted" id="weeklyHelpBlock">
+                    Examples:
+                    <ul class="form-examples-list">
+                      <li>Overall was your week enjoyable?</li>
+                      <li>Did you find your tasks too difficult?</li>
+                    </ul>
+                  </small>
                 </div>
                 <div class="form-group form-check">
-                  <input type="checkbox" class="form-check-input" id="monthly" formControlName="monthly" name="monthly">
+                  <input type="checkbox" class="form-check-input" id="monthly" formControlName="monthly" name="monthly" aria-describedby="monthlyHelpBlock">
                   <label class="form-check-label" for="monthly">Monthly feedback</label>
+                  <small class="form-text text-muted" id="monthlyHelpBlock">
+                    Examples:
+                    <ul class="form-examples-list">
+                      <li>Was your day challenging?</li>
+                      <li>Did you find your tasks too difficult?</li>
+                    </ul>
+                  </small>
                 </div>
               </form>
             </div>
