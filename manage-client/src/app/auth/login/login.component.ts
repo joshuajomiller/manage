@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/my-info']);
             }
           } else {
-            this.router.navigate(['/auth/add-team']);
+            this.router.navigate(['/auth/welcome']);
           }
 
         }

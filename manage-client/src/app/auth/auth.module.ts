@@ -13,6 +13,7 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import { InviteTeamComponent } from './invite-team/invite-team.component';
 import { FeedbackPreferencesComponent } from './feedback-preferences/feedback-preferences.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { FeedbackPreferencesComponent } from './feedback-preferences/feedback-pr
   exports: [
     LoginComponent
   ],
-  declarations: [LoginComponent, AddOrganisationComponent, ConfirmJoinOrganisationComponent, AddTeamComponent, ConfirmJoinTeamComponent, LoginFormComponent, RegisterFormComponent, InviteTeamComponent, FeedbackPreferencesComponent],
+  declarations: [LoginComponent, AddOrganisationComponent, ConfirmJoinOrganisationComponent, AddTeamComponent, ConfirmJoinTeamComponent, LoginFormComponent, RegisterFormComponent, InviteTeamComponent, FeedbackPreferencesComponent, WelcomeComponent],
   entryComponents: [ConfirmJoinOrganisationComponent]
 })
 export class AuthModule { }

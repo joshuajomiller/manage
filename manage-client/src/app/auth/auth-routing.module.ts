@@ -5,10 +5,12 @@ import {AddOrganisationComponent} from "./add-organisation/add-organisation.comp
 import {AddTeamComponent} from "./add-team/add-team.component";
 import {InviteTeamComponent} from "./invite-team/invite-team.component";
 import {FeedbackPreferencesComponent} from "./feedback-preferences/feedback-preferences.component";
+import {WelcomeComponent} from "./welcome/welcome.component";
 
 const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
+  { path: 'welcome', component: WelcomeComponent },
   { path: 'add-organisation', component: AddOrganisationComponent },
   { path: 'add-team', component: AddTeamComponent },
   { path: 'invite-team', component: InviteTeamComponent },
