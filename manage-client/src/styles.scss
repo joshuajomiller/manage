@@ -31,3 +31,7 @@ main{
 .form-control{
   border-radius: 0;
 }
+[class^="ti-"], [class*=" ti-"] {
+  position: relative;
+  top: 3px;
+}
