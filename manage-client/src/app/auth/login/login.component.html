@@ -1,6 +1,9 @@
-<div class="row justify-content-center">
-  <main role="main" class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <main role="main" class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
       <app-login-form [hidden]="!showLogin" (doToggleForm)="toggleCard()" (doLogin)="login($event)"></app-login-form>
-      <app-register-form [hidden]="showLogin" (doToggleForm)="toggleCard()" (doRegister)="register($event)"></app-register-form>
-  </main>
+      <app-register-form [hidden]="showLogin" (doToggleForm)="toggleCard()"
+                         (doRegister)="register($event)"></app-register-form>
+    </main>
+  </div>
 </div>

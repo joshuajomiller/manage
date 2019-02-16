@@ -24,12 +24,12 @@ router.route('/')
                 });
                 res.send(JSON.stringify(orgTeams));
               } else {
-                res.status(400).send({msg: 'No Teams could be found'});
+                res.status(400).send({msg: 'No team could be found'});
               }
             }
           })
         } else {
-          res.status(400).send({msg: 'No Teams could be found'});
+          res.status(400).send({msg: 'No team could be found'});
         }
       }
     });
@@ -61,6 +61,58 @@ router.route('/')
     });
   });
 
+router.route('/preferences/:type')
+  .put(function (req, res) {
+    User.findOne({email: req.tokenDetails.email}, (err, user) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        if (user) {
+          Team.findOne({manager: user._id}, ((err, team) => {
+            if (err) {
+              res.status(400).send({error: err});
+            } else {
+              if (team) {
+                if (req.params.type === 'feedback'){
+                  (req.body.weekly !== undefined) && (team.preferences.feedback.weekly = req.body.weekly);
+                  (req.body.monthly !== undefined) && (team.preferences.feedback.monthly = req.body.monthly);
+                }
+                team.save(() => {
+                  res.send({updated: true});
+                });
+              } else {
+                res.status(400).send({msg: 'No team could be found, or you are not authorised to invite team members'});
+              }
+            }
+          }))
+        }
+      }
+    })
+  });
+
+router.route('/preferences')
+  .get(function (req, res) {
+    User.findOne({email: req.tokenDetails.email}, (err, user) => {
+      if (err) {
+        res.status(400).send(err);
+      } else {
+        if (user) {
+          Team.findOne({manager: user._id}, ((err, team) => {
+            if (err) {
+              res.status(400).send({error: err});
+            } else {
+              if (team) {
+                res.send(team.preferences);
+              } else {
+                res.status(400).send({msg: 'No team could be found, or you are not authorised to invite team members'});
+              }
+            }
+          }))
+        }
+      }
+    })
+  });
+
 router.route('/invite')
 /* POST invite to team. */
   .post(function (req, res) {
@@ -73,13 +125,13 @@ router.route('/invite')
             if (err) {
               res.status(400).send({error: err});
             } else {
-              if (team.length) {
+              if (team) {
                 team.invites.push(req.body.email);
                 team.save(() => {
                   res.send({invited: true});
                 });
               } else {
-                res.status(400).send({msg: 'No Teams could be found, or you are not authorised to invite team members'});
+                res.status(400).send({msg: 'No team could be found, or you are not authorised to invite team members'});
               }
             }
           }))

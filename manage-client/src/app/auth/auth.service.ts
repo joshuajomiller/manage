@@ -87,11 +87,11 @@ export class AuthService {
   }
 
   getTeams(){
-    return this.http.get<TeamDetails[]>(`/api/teams`)
+    return this.http.get<TeamDetails[]>(`/api/team`)
   }
 
   createTeam(teamName){
-    return this.http.post<TeamDetails>('/api/teams/', {teamName})
+    return this.http.post<TeamDetails>('/api/team/', {teamName})
   }
 
   joinTeam(teamId){
@@ -104,5 +104,13 @@ export class AuthService {
 
   inviteTeamMember(email){
     return this.http.post<{invited: boolean}>('/api/invite', email)
+  }
+
+  getTeamPreferences(){
+    return this.http.get<any>('/api/team/preferences');
+  }
+
+  updateTeamFeedbackPreferences(preferences){
+    return this.http.put<{updated: boolean}>('/api/team/preferences/feedback', preferences);
   }
 }

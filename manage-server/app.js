@@ -43,7 +43,7 @@ app.use('/auth', auth);
 app.use('/user', passport.authenticate('jwt', {session: false}), users);
 app.use('/invite', passport.authenticate('jwt', {session: false}), invites);
 app.use('/organisation', passport.authenticate('jwt', {session: false}), organisations);
-app.use('/teams', passport.authenticate('jwt', {session: false}), teams);
+app.use('/team', passport.authenticate('jwt', {session: false}), teams);
 app.use('/board', passport.authenticate('jwt', {session: false}), boards);
 app.use('/test', passport.authenticate('jwt', {session: false}), test);
 

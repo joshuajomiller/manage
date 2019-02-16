@@ -106,14 +106,10 @@ router.post('/join-team', function (req, res) {
             res.status(400).send(err);
           } else {
             if (user) {
-              if (user.profile.organisation.toString() === team.organisationId) {
-                user.profile.team = team._id;
-                user.save(() => {
-                  res.send({joined: true});
-                });
-              } else {
-                res.status(400).send({msg: 'User is not allowed to join this team'});
-              }
+              user.profile.team = team._id;
+              user.save(() => {
+                res.send({joined: true});
+              });
             } else {
               res.status(400).send({msg: 'User does not exist'});
             }
