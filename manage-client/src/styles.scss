@@ -1,4 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+html, body{
+  min-height: 100vh;
+}
+.vh-100{
+  min-height: 100vh;
+}
 body{
   font-family: 'Hind Siliguri', sans-serif;
   background-color: #F7FAFB;
