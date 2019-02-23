@@ -10,10 +10,5 @@ export class WelcomeComponent implements OnInit {
 
   constructor(private router: Router) { }
 
-  ngOnInit() {
-  }
-
-  go(){
-    this.router.navigate(['/auth/invite-team']);
-  }
+  ngOnInit() {}
 }

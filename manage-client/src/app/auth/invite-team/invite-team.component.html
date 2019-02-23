@@ -1,40 +1,55 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <main role="main" class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
+    <main role="main" class="col-xs-12 col-sm-10 col-md-8 col-lg-6 mx-auto mt-5">
       <div class="card">
-        <div class="card-header">
-          <h3><span class="ti-email"></span> Invite your team members</h3>
-        </div>
-        <div class="card-body">
+        <div class="card-body p-5">
           <div class="row">
-            <form [formGroup]="inviteForm" (ngSubmit)="invite()" class="col form-inline">
-              <div class="form-group w-100">
-                <div class="input-group w-100">
-                  <input type="email" class="form-control" placeholder="Email" formControlName="email" name="email">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary float-right col" [disabled]="!inviteForm.valid">
-                      Send invite
-                    </button>
-                  </div>
+            <div class="col text-center mb-3">
+              <h2 class="mb-3 text-primary">Invite your team members</h2>
+              <h5>Get started with Manage by adding your team members</h5>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col-6 image-wrapper invite-image">
+              <img src="assets/img/illustrations/invite.svg">
+            </div>
+            <div class="col-6 border-left px-4 py-2">
+              <div class="row">
+                <div class="col">
+                  <form [formGroup]="inviteForm" (ngSubmit)="invite()" class="col form-inline">
+                    <div class="form-group w-100">
+                      <div class="input-group w-100">
+                        <input type="email" class="form-control" placeholder="Email" formControlName="email"
+                               name="email">
+                        <div class="input-group-append">
+                          <button type="submit" class="btn btn-primary float-right col" [disabled]="!inviteForm.valid">
+                            Send invite
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </form>
                 </div>
               </div>
-              <div class="col">
-              </div>
-            </form>
-          </div>
-          <div class="row">
-            <div class="col">
-              <hr>
-              <div *ngIf="invitedMembers.length">
-                <div *ngFor="let invite of invitedMembers">
-                  {{invite.email}} - {{invite.status}}
+              <div class="row">
+                <div class="col">
+                  <div *ngIf="invitedMembers.length">
+                    <div *ngFor="let invite of invitedMembers">
+                      {{invite.email}} - {{invite.status}}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
           <div class="row">
-            <div class="col">
-              <button type="button" class="btn btn-outline-primary float-right" routerLink="/auth/feedback-preferences">
+            <div class="col mt-5 pt-3">
+              <button type="button" class="btn btn-outline-primary float-left"
+                      routerLink="/auth/add-team">
+                Back
+              </button>
+              <button type="button" class="btn btn-primary float-right"
+                      routerLink="/auth/feedback-preferences">
                 Continue
               </button>
             </div>

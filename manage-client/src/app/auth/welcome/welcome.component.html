@@ -1,43 +1,41 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <main role="main" class="col-xs-12 col-sm-10 col-md-8 col-lg-6 mx-auto">
-      <div class="card">
-        <div class="card-body p-5">
-          <div class="row">
-            <div class="col text-center mb-3">
-              <h2 class="mb-3 text-primary">Welcome to Manage</h2>
-              <h5>Increase team engagement and understand how your team members are feeling.</h5>
-            </div>
+    <div class="card col-xs-12 col-sm-10 col-md-8 col-lg-6 mx-auto mt-5">
+      <div class="card-body p-5">
+        <div class="row">
+          <div class="col text-center mb-3">
+            <h2 class="mb-3 text-primary">Welcome to Manage</h2>
+            <h5>Increase team engagement and understand how your team members are feeling.</h5>
           </div>
-          <div class="row">
-            <div class="col-xs-12 col-sm-6 p-5">
-              <div class="image-wrapper welcome-image">
-                <img src="assets/img/illustrations/objectives.svg">
-              </div>
-              <h4 class="my-4 font-weight-bold text-primary text-center">Objectives</h4>
-              <h6 class="text-muted">
-                Set long term objectives for your team and track with short term key results. Empower your team members
-                to reach their full potential.
-              </h6>
+        </div>
+        <div class="row">
+          <div class="col-xs-12 col-sm-6 p-5">
+            <div class="image-wrapper welcome-image">
+              <img src="assets/img/illustrations/objectives.svg">
             </div>
-            <div class="col-xs-12 col-sm-6 p-5">
-              <div class="image-wrapper welcome-image">
-                <img src="assets/img/illustrations/feedback.svg">
-              </div>
-              <h4 class="my-4 font-weight-bold text-primary text-center">Feedback</h4>
-              <h6 class="text-muted">
-                Collect weekly and monthly feedback from your team. Gauge feelings and gain insights to your team
-                members' mood.
-              </h6>
-            </div>
+            <h4 class="my-4 font-weight-bold text-primary text-center">Objectives</h4>
+            <h6 class="text-muted">
+              Set long term objectives for your team and track with short term key results. Empower your team members
+              to reach their full potential.
+            </h6>
           </div>
-          <div class="row">
-            <div class="col text-center">
-              <button class="btn btn-primary" (click)="go()">Let's go...</button>
+          <div class="col-xs-12 col-sm-6 p-5">
+            <div class="image-wrapper welcome-image">
+              <img src="assets/img/illustrations/feedback.svg">
             </div>
+            <h4 class="my-4 font-weight-bold text-primary text-center">Feedback</h4>
+            <h6 class="text-muted">
+              Collect weekly and monthly feedback from your team. Gauge feelings and gain insights to your team
+              members' mood.
+            </h6>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col text-center">
+            <button class="btn btn-primary" routerLink="/auth/add-team">Let's go...</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </div>

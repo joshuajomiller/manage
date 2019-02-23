@@ -1,28 +1,46 @@
 <div class="container-fluid">
   <div class="row justify-content-center">
-    <main role="main" class="col">
-      <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4 mx-auto">
-        <div class="card">
-          <div class="card-header">
-            <h3><span class="ti-marker-alt"></span> Create a team</h3>
+    <div class="card col-xs-12 col-sm-10 col-md-8 col-lg-6 mx-auto mt-5">
+      <div class="card-body p-5">
+        <div class="row">
+          <div class="col text-center mb-3">
+            <h2 class="mb-3 text-primary">Create a team</h2>
+            <h5>Manage is made to work with your team. Create a team to get started.</h5>
           </div>
-          <div class="card-body">
-            <h6 class="col mb-3">-Name- is made to work with your team. Create a team to get started.</h6>
-            <form>
-              <div class="form-group">
-                <label class="col mb-3">
-                  <input type="text" class="form-control" [(ngModel)]="teamName" name="teamName"
-                         placeholder="Team name">
-                  <small class="text-muted">You will be appointed the team manager. You can change this when someone
-                    else joins your team
-                  </small>
-                </label>
-                <button type="submit" class="btn btn-primary float-right" (click)="createTeam()">Create</button>
+        </div>
+        <div class="row mt-5">
+          <div class="col-6 px-4 py-2">
+            <div class="row">
+              <div class="col">
+                <form>
+                  <div class="form-group">
+                    <label class="col mb-1 pt-5">
+                      <input type="text" class="form-control" [(ngModel)]="teamName" name="teamName"
+                             placeholder="Team name">
+                    </label>
+                    <h6 class="text-muted text-center py-4">You will be appointed the team manager. You can change this
+                      when someone
+                      else joins your team
+                    </h6>
+                  </div>
+                </form>
               </div>
-            </form>
+            </div>
+          </div>
+          <div class="col-6 border-left image-wrapper create-team-image">
+            <img src="assets/img/illustrations/create-team.svg">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col mt-5 pt-3">
+            <button type="button" class="btn btn-outline-primary float-left"
+                    routerLink="/auth/welcome">
+              Back
+            </button>
+            <button type="submit" class="btn btn-primary float-right" (click)="createTeam()">Create</button>
           </div>
         </div>
       </div>
-    </main>
+    </div>
   </div>
 </div>
