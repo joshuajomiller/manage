@@ -7,6 +7,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const tokenDecode = require('./middleware/tokenDecode');
+const addUserDetails = require('./middleware/addUserDetails');
 
 let index = require('./routes/index');
 let users = require('./routes/users');
@@ -37,6 +38,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(tokenDecode);
+app.use(addUserDetails);
 
 app.use('/', index);
 app.use('/auth', auth);

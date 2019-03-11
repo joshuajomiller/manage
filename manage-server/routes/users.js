@@ -1,19 +1,17 @@
 let express = require('express');
 let router = express.Router();
-const User = require("../models/User");
 const Organisation = require("../models/Organisation");
 const Team = require("../models/Team");
-const jwt = require('jsonwebtoken');
 
 router.route('/')
 
 /* GET user details. */
   .get(function (req, res) {
-    User.findOne({email: req.tokenDetails.email}).populate('profile.organisation')
-      .populate({path: 'profile.team', populate: {path: 'manager'}}).exec((err, user) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
+    req.user
+      .populate('profile.organisation')
+      .populate({path: 'profile.team', populate: {path: 'manager'}})
+      .execPopulate()
+      .then(user => {
         if (user) {
           user = user.toJSON();
           let currentUser = {
@@ -44,25 +42,18 @@ router.route('/')
         } else {
           res.status(400).send({msg: 'User does not exist'});
         }
-      }
-    });
+      })
+      .catch(err => {
+        res.status(400).send(err);
+      })
   })
   .put(function (req, res) {
-    User.findOne({email: req.tokenDetails.email}, (err, user) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        if (user) {
-          let birthDate = req.body.profile.details.birthDate;
-          req.body.profile.details.birthDate = new Date(birthDate.year, birthDate.month - 1, birthDate.day).toISOString();
-          user.profile = req.body.profile;
-          user.save(() => {
-            res.send({joined: true});
-          });
-        } else {
-          res.status(400).send({msg: 'User does not exist'});
-        }
-      }
+    console.log(req.user);
+    let birthDate = req.body.profile.details.birthDate;
+    req.body.profile.details.birthDate = new Date(birthDate.year, birthDate.month - 1, birthDate.day).toISOString();
+    req.user.profile.details = req.body.profile.details;
+    req.user.save((err) => {
+      res.send(err);
     });
   });
 
@@ -73,19 +64,9 @@ router.post('/join-organisation', function (req, res) {
       res.status(400).send({error: err});
     } else {
       if (organisation) {
-        User.findOne({email: req.tokenDetails.email}, (err, user) => {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            if (user) {
-              user.profile.organisation = organisation._id;
-              user.save(() => {
-                res.send({joined: true});
-              });
-            } else {
-              res.status(400).send({msg: 'User does not exist'});
-            }
-          }
+        req.user.profile.organisation = organisation._id;
+        req.user.save(() => {
+          res.send({joined: true});
         });
       } else {
         res.status(400).send({msg: 'Organisation does not exist'});
@@ -101,19 +82,9 @@ router.post('/join-team', function (req, res) {
       res.status(400).send({error: err});
     } else {
       if (team) {
-        User.findOne({email: req.tokenDetails.email}, (err, user) => {
-          if (err) {
-            res.status(400).send(err);
-          } else {
-            if (user) {
-              user.profile.team = team._id;
-              user.save(() => {
-                res.send({joined: true});
-              });
-            } else {
-              res.status(400).send({msg: 'User does not exist'});
-            }
-          }
+        req.user.profile.team = team._id;
+        req.user.save(() => {
+          res.send({joined: true});
         });
       } else {
         res.status(400).send({msg: 'Team does not exist'});
@@ -124,10 +95,10 @@ router.post('/join-team', function (req, res) {
 
 /* Get user's team */
 router.get('/team', function (req, res) {
-  User.findOne({email: req.tokenDetails.email}).populate('profile.team').exec((err, user) => {
-    if (err) {
-      res.status(400).send(err);
-    } else {
+  req.user
+    .populate('profile.team')
+    .execPopulate()
+    .then(user => {
       if (user) {
         console.log(user.profile.team);
         Team.findById(user.profile.team._id, (err, team) => {
@@ -144,8 +115,7 @@ router.get('/team', function (req, res) {
       } else {
         res.status(400).send({msg: 'User does not exist'});
       }
-    }
-  });
+    });
 });
 
 

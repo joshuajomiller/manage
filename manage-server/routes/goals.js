@@ -35,7 +35,7 @@ router.route('/')
         res.status(400).send(err);
       } else {
         if (user) {
-          
+
         } else {
           res.status(400).send({msg: 'No user could be found'});
         }
