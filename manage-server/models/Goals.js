@@ -8,6 +8,7 @@ const goalSchema = new mongoose.Schema({
     tags: [String],
     assignee: { type: Schema.Types.ObjectId, ref: 'User' },
     assigner: { type: Schema.Types.ObjectId, ref: 'User' },
+    priority: String
 }, {timestamps: true});
 
 const Goal = mongoose.model('Goal', goalSchema);
