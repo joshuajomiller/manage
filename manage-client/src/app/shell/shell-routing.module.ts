@@ -12,6 +12,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full'},
       { path: 'dashboard', loadChildren: 'src/app/dashboard/dashboard.module#DashboardModule', canLoad: [AuthGuard]},
       { path: 'my-info', loadChildren: 'src/app/my-info/my-info.module#MyInfoModule', canLoad: [AuthGuard]},
+      { path: 'goals', loadChildren: 'src/app/my-goals/my-goals.module#MyGoalsModule', canLoad: [AuthGuard]},
       { path: 'team', loadChildren: 'src/app/team/team.module#TeamModule', canLoad: [AuthGuard]}
     ]
   }
