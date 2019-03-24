@@ -1,5 +1,86 @@
-<div class="row">
-  <main role="main" class="col">
-    <h1 class="mt-3">My Goals</h1>
-  </main>
-</div>
+<main role="main">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <h1 class="mt-3">My Goals</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8 mx-auto">
+      <div class="row mt-4">
+        <div class="col">
+          <h3 class="mb-2 font-weight-bold">This Week</h3>
+          <div class="goal-wrapper d-flex flex-column">
+            <div *ngFor="let i of [0,1,2]" class="goal-item my-2 p-2">
+              <div class="goal-header d-flex">
+                <h4 class="goal-title flex-grow-1">
+                  Goal Title
+                </h4>
+                <div class="goal-status flex-shrink-1 p-1">
+                  <i class="far fa-check-circle"></i>
+                </div>
+              </div>
+              <div class="goal-description">
+                Here is a description for your goal that I would really like you to do.
+              </div>
+              <div class="goal-tags-wrapper mt-2">
+                <span class="goal-tag mr-1 px-2">personal</span>
+                <span class="goal-tag mr-1 px-2">growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h3 class="mb-2 font-weight-bold">This Month</h3>
+          <div class="goal-wrapper d-flex flex-column">
+            <div *ngFor="let i of [0,1,2,3,4]" class="goal-item my-2 p-2">
+              <h4 class="goal-title">
+                Goal Title
+              </h4>
+              <div class="goal-description">
+                Here is a description for your goal that I would really like you to do.
+              </div>
+              <div class="goal-tags-wrapper mt-2">
+                <span class="goal-tag mr-1 px-2">personal</span>
+                <span class="goal-tag mr-1 px-2">growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h3 class="mb-2 font-weight-bold">This Quarter</h3>
+          <div class="goal-wrapper d-flex flex-column">
+            <div *ngFor="let i of [0,1,2]" class="goal-item my-2 p-2">
+              <h4 class="goal-title">
+                Goal Title
+              </h4>
+              <div class="goal-description">
+                Here is a description for your goal that I would really like you to do.
+              </div>
+              <div class="goal-tags-wrapper mt-2">
+                <span class="goal-tag mr-1 px-2">personal</span>
+                <span class="goal-tag mr-1 px-2">growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <h3 class="mb-2 font-weight-bold">This Year</h3>
+          <div class="goal-wrapper d-flex flex-column">
+            <div *ngFor="let i of [0,1]" class="goal-item my-2 p-2">
+              <h4 class="goal-title">
+                Goal Title
+              </h4>
+              <div class="goal-description">
+                Here is a description for your goal that I would really like you to do.
+              </div>
+              <div class="goal-tags-wrapper mt-2">
+                <span class="goal-tag mr-1 px-2">personal</span>
+                <span class="goal-tag mr-1 px-2">growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

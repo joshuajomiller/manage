@@ -1,0 +1,18 @@
+.goal-item {
+  flex-basis: 5rem;
+  background: #fff;
+  border-radius: 10px;
+  border: 1px solid #eee;
+}
+.goal-status{
+  color: #c7c7c7;
+}
+.goal-status:hover{
+  color: initial;
+  cursor: pointer;
+}
+.goal-tag{
+  background: #def6ff;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
