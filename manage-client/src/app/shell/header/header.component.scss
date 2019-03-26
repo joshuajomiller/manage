@@ -8,3 +8,8 @@ nav.navbar{
   background: #fff;
   box-shadow: 0 0 5px 2px #eee;
 }
+.nav-link.active{
+  font-weight: bold;
+  background: #2f5b94;
+  color: #f7fafb;
+}
