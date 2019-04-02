@@ -1,0 +1,28 @@
+<main role="main">
+  <div class="row mt-4">
+    <div class="col-8 mx-auto">
+      <div class="row mt-5">
+        <div class="col challenge-wrapper d-flex flex-wrap justify-content-around">
+          <div *ngFor="let challenge of model" class="challenge-item my-2 p-2"
+               [class.pending]="challenge.status === 'pending'" [ngClass]="challenge.rank">
+            <div class="challenge-header d-flex align-items-center">
+              <div class="challenge-rank mr-2" [ngClass]="challenge.rank"></div>
+              <h4 class="challenge-title flex-grow-1">
+                {{challenge.title}}
+              </h4>
+              <div class="challenge-status flex-shrink-1 p-1" (click)="toggleChallengeStatus(challenge)">
+                <i class="far fa-check-circle"></i>
+              </div>
+            </div>
+            <div class="challenge-description">
+              {{challenge.description}}
+            </div>
+            <div class="challenge-tags-wrapper mt-2">
+              <span *ngFor="let tag of challenge.tags" class="challenge-tag mr-1 px-2">{{tag}}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

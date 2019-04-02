@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const goalSchema = new mongoose.Schema({
+const challengeSchema = new mongoose.Schema({
     title: String,
     description: String,
     expiry: Date,
@@ -11,6 +11,6 @@ const goalSchema = new mongoose.Schema({
     priority: String
 }, {timestamps: true});
 
-const Goal = mongoose.model('Goal', goalSchema);
+const Challenge = mongoose.model('Challenge', challengeSchema);
 
-module.exports = Goal;
+module.exports = Challenge;

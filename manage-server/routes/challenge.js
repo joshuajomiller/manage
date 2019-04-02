@@ -1,22 +1,22 @@
 let express = require('express');
 let router = express.Router();
-const Goal = require("../models/Goal");
+const Challenge = require("../models/Challenge");
 const User = require("../models/User");
 
 router.route('/')
-/* GET user's goals */
+/* GET user's challenges */
   .get(function (req, res) {
     User.findOne({email: req.tokenDetails.email}, (err, user) => {
       if (err) {
         res.status(400).send(err);
       } else {
         if (user) {
-          Goal.find({assignee: user._id}).lean().exec((err, goals) => {
+          Challenge.find({assignee: user._id}).lean().exec((err, challenges) => {
             if (err) {
               res.status(400).send({error: err});
             } else {
               if (invites.length) {
-                res.send(JSON.stringify(goals));
+                res.send(JSON.stringify(challenges));
               } else {
                 res.status(204).send();
               }

@@ -1,0 +1,61 @@
+.challenge-item {
+  flex-basis: 20rem;
+  background: #fff;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  transition: all 0.4s;
+  margin: 1rem;
+
+  &.gold{
+    border-color: gold;
+  }
+  &.silver{
+    border-color: silver;
+  }
+  &.bronze{
+    border-color: #CD7F32;
+  }
+
+  &.pending{
+    text-decoration: line-through;
+    opacity: 0.5;
+
+    .challenge-status{
+      opacity: 1;
+    }
+  }
+
+  &:hover .challenge-status{
+    opacity: 1;
+  }
+}
+.challenge-rank.gold {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+
+  &.gold{
+    background: gold;
+  }
+  &.silver{
+    background: silver;
+  }
+  &.bronze{
+    background: #CD7F32;
+  }
+}
+
+.challenge-status{
+  color: #c7c7c7;
+  opacity: 0;
+  transition: all 0.2s;
+  &:hover {
+    color: initial;
+    cursor: pointer;
+  }
+}
+.challenge-tag{
+  background: #def6ff;
+  border-radius: 5px;
+  font-size: 0.85rem;
+}
