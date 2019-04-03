@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {ShellComponent} from "./shell/shell/shell.component";
+import {AuthGuard} from "./shell/auth.guard";
 
 const routes: Routes = [
   {
-    path: 'auth',
-    loadChildren: 'src/app/auth/auth.module#AuthModule'
+    path: 'onboard',
+    loadChildren: 'src/app/onboard/onboard.module#OnboardModule',
+    canActivate: [AuthGuard]
   },
   {
     path: 'login',

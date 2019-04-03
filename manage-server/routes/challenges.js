@@ -1,6 +1,6 @@
 let express = require('express');
 let router = express.Router();
-const Challenge = require("../models/Challenge");
+const Challenges = require("../models/Challenges");
 const User = require("../models/User");
 
 router.route('/')
@@ -11,7 +11,7 @@ router.route('/')
         res.status(400).send(err);
       } else {
         if (user) {
-          Challenge.find({assignee: user._id}).lean().exec((err, challenges) => {
+          Challenges.find({assignee: user._id}).lean().exec((err, challenges) => {
             if (err) {
               res.status(400).send({error: err});
             } else {
@@ -29,18 +29,10 @@ router.route('/')
     })
   })
 
+  /* POST new user challenge */
   .post(function (req, res) {
-    User.findOne({email: req.tokenDetails.email}, (err, user) => {
-      if (err) {
-        res.status(400).send(err);
-      } else {
-        if (user) {
+    let currentUser = req.user;
 
-        } else {
-          res.status(400).send({msg: 'No user could be found'});
-        }
-      }
-    })
   })
 
 module.exports = router;

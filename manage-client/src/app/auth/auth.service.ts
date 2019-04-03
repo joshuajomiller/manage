@@ -78,34 +78,6 @@ export class AuthService {
     return this.http.get<OrganisationDetails>('/api/organisation/code/'+ organisationCode);
   }
 
-  joinOrganisation(organisationId) {
-    return this.http.post<{joined: boolean}>('/api/user/join-organisation', {organisationId});
-  }
-
-  createOrganisation(organisationName, organisationUrl) {
-    return this.http.post<OrganisationDetails>('/api/organisation/', {organisationName, organisationUrl})
-  }
-
-  getTeams(){
-    return this.http.get<TeamDetails[]>(`/api/team`)
-  }
-
-  createTeam(teamName){
-    return this.http.post<TeamDetails>('/api/team/', {teamName})
-  }
-
-  joinTeam(teamId){
-    return this.http.post<{joined: boolean}>('/api/user/join-team', {teamId})
-  }
-
-  getInvitedTeamMembers(){
-    return this.http.get<{invited: any}>('/api/invite/team')
-  }
-
-  inviteTeamMember(email){
-    return this.http.post<{invited: boolean}>('/api/invite', email)
-  }
-
   getTeamPreferences(){
     return this.http.get<any>('/api/team/preferences');
   }

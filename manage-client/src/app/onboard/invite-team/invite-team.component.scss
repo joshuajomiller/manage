@@ -1,0 +1,26 @@
+.user-invite-status {
+  text-transform: capitalize;
+}
+
+.user-invite-line {
+  border-bottom: 1px solid #eee;
+
+  &:last-of-type{
+    border-bottom: 0;
+  }
+
+  &.pending .user-invite-status {
+    opacity: 0.7;
+  }
+}
+
+.remove-invite {
+  opacity: 0.6;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: opacity 300ms ease-in;
+
+  &:hover{
+    opacity: 1;
+  }
+}

@@ -8,6 +8,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { CoreModule } from "./core/core.module";
 import { TokenInterceptor } from "./auth/token.interceptor";
+import {AuthModule} from "./auth/auth.module";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { TokenInterceptor } from "./auth/token.interceptor";
     NgbModule.forRoot(),
     AppRoutingModule,
     ShellModule,
+    AuthModule,
     HttpClientModule,
     CoreModule
   ],

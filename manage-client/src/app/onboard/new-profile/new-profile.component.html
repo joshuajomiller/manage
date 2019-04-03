@@ -1,0 +1,49 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <main role="main" class="col-xs-12 col-sm-10 col-md-8 col-lg-6 mx-auto mt-5">
+      <div class="card">
+        <div class="card-body p-5">
+          <div class="row">
+            <div class="col text-center mb-3">
+              <h2 class="mb-3 text-primary">Welcome to Manage</h2>
+              <h5>Let's start by filling out your profile</h5>
+            </div>
+          </div>
+          <div class="row mt-3">
+            <div class="col px-4 py-2">
+              <div class="row">
+                <div class="col">
+                  <form [formGroup]="profileForm" (ngSubmit)="save()" class="col">
+                    <div class="form-group w-100">
+                      <div class="row">
+                        <div class="input-group col-xs-12 col-sm-8 col-md-8 mx-auto">
+                          <input type="text" class="form-control" placeholder="Organisation Name"
+                                 formControlName="organisationName"
+                                 name="organisationName">
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="input-group col-xs-12 col-sm-8 col-md-8 mx-auto">
+                          <input type="text" class="form-control" placeholder="Team Name" formControlName="teamName"
+                                 name="teamName">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col mt-2 pt-3">
+                        <button type="submit" class="btn btn-primary float-right" [disabled]="!profileForm.valid" >
+                          Continue
+                        </button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

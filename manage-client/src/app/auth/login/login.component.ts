@@ -23,12 +23,12 @@ export class LoginComponent implements OnInit {
           if (user.user.profile.team){
             //TODO add support for multiple teams
             if (!user.user.profile.team.members.length){
-              this.router.navigate(['/auth/invite-team']);
+              this.router.navigate(['/onboard/invite-team']);
             } else {
               this.router.navigate(['/my-info']);
             }
           } else {
-            this.router.navigate(['/auth/welcome']);
+            this.router.navigate(['/onboard/new-profile']);
           }
 
         }

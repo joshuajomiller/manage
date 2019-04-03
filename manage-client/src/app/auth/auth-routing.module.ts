@@ -3,18 +3,24 @@ import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from "./login/login.component";
 import {AddOrganisationComponent} from "./add-organisation/add-organisation.component";
 import {AddTeamComponent} from "./add-team/add-team.component";
-import {InviteTeamComponent} from "./invite-team/invite-team.component";
 import {FeedbackPreferencesComponent} from "./feedback-preferences/feedback-preferences.component";
 import {WelcomeComponent} from "./welcome/welcome.component";
+import {AuthComponent} from "./auth/auth.component";
+
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
-  { path: 'login', component: LoginComponent },
-  { path: 'welcome', component: WelcomeComponent },
-  { path: 'add-organisation', component: AddOrganisationComponent },
-  { path: 'add-team', component: AddTeamComponent },
-  { path: 'invite-team', component: InviteTeamComponent },
-  { path: 'feedback-preferences', component: FeedbackPreferencesComponent },
+  {
+    path: 'auth',
+    component: AuthComponent,
+    children: [
+      { path: '', redirectTo: 'login', pathMatch: 'full' },
+      { path: 'login', component: LoginComponent },
+      { path: 'welcome', component: WelcomeComponent },
+      { path: 'add-organisation', component: AddOrganisationComponent },
+      { path: 'add-team', component: AddTeamComponent },
+      { path: 'feedback-preferences', component: FeedbackPreferencesComponent },
+    ]
+  }
 ];
 
 @NgModule({
