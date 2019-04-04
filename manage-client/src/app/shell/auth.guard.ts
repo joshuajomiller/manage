@@ -7,7 +7,9 @@ import {AuthService} from "../auth/auth.service";
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate {
-  constructor(private authService: AuthService, private router: Router){}
+  constructor(private authService: AuthService, private router: Router){
+
+  }
 
   canActivate( next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
     this.authService.redirectUrl = state.url;

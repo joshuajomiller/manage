@@ -55,7 +55,7 @@ router.route('/')
                 };
                 Invite.create(newInvite, function (err, data) {
                   if (err) {
-                    res.status(400).send(err)
+                    res.status(400).send({err, msg: 'An error occurred. Please try again soon'})
                   }
                   res.send({invited: true});
                 });

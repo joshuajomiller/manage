@@ -14,12 +14,10 @@ export class OverviewComponent implements OnInit {
   constructor(public teamService: TeamService) { }
 
   ngOnInit() {
-    this.teamMembers = this.teamService.getMyTeamMembers();
-    this.teamMembers.forEach(member =>{
-      member.tasksNew = member.tasks.filter(task => {return task.status === 'new'});
-      member.tasksInProgress = member.tasks.filter(task => {return task.status === 'progress'});
-      member.newRequests = member.requests.filter(request => {return request.status === 'pending'});
-    })
+    this.teamService.getMyTeamMembers().subscribe(members => {
+      this.teamMembers = members;
+    });
+
   }
 
 }

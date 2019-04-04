@@ -20,24 +20,24 @@ export class AddTeamComponent implements OnInit {
   }
 
   getTeams(){
-    this.authService.getTeams().subscribe(teams=>{
-      this.teams = teams;
-    })
+    // this.authService.getTeams().subscribe(teams=>{
+    //   this.teams = teams;
+    // })
   }
 
   createTeam() {
-    this.authService.createTeam(this.teamName).subscribe(team => {
-      this.joinTeam(team.id, true);
-    })
+    // this.authService.createTeam(this.teamName).subscribe(team => {
+    //   this.joinTeam(team.id, true);
+    // })
   }
 
   joinTeam(teamId, isCreator?){
-    this.authService.joinTeam(teamId || this.teamId).subscribe(teamId => {
-      if (isCreator){
-        this.router.navigate(['/auth/invite-team']);
-      } else {
-        this.router.navigate(['/my-info']);
-      }
-    })
+    // this.authService.joinTeam(teamId || this.teamId).subscribe(teamId => {
+    //   if (isCreator){
+    //     this.router.navigate(['/auth/invite-team']);
+    //   } else {
+    //     this.router.navigate(['/my-info']);
+    //   }
+    // })
   }
 }

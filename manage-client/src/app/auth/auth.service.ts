@@ -40,7 +40,7 @@ export class AuthService {
     this.toggleAuthStatusChange(false);
   }
 
-  register(firstName: string, lastName: string, email: string, password: string, remember: boolean) {
+  register(firstName: string, lastName: string, email: string, password: string) {
     return this.http.post<{created}>('/api/auth/user', {firstName: firstName, lastName: lastName, email: email, password: password});
   }
 

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
   }
 
   register({firstName, lastName, email, password, remember}) {
-    this.authService.register(firstName, lastName, email, password, remember)
+    this.authService.register(firstName, lastName, email, password)
       .subscribe(status => {
         if (status && status.created) {
           this.login({email, password, remember});

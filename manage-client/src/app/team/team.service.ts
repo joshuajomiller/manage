@@ -3,6 +3,7 @@ import {Member} from "./member";
 import {User} from "../auth/user";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs/index";
+import {pluck} from "rxjs/internal/operators";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class TeamService {
   constructor(private http: HttpClient) {}
 
   getMyTeamMembers(): Observable<User[]> {
-    return this.http.get<User[]>('/api/user/team')
+    return this.http.get<User[]>('/api/user/team').pipe(pluck('members'));
 
     // return [
     //   {

@@ -24,3 +24,13 @@
     opacity: 1;
   }
 }
+.error-message-wrapper {
+  font-size: 0.9rem;
+  opacity: 0;
+  min-height: 1.3rem;
+  transition: opacity 200ms ease-in;
+
+  &.show {
+    opacity: 1;
+  }
+}
