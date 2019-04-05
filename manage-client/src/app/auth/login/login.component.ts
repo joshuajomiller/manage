@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from "@angular/router";
 import {AuthService} from "../auth.service";
+import {OnboardService} from "../../onboard/onboard.service";
 
 @Component({
   selector: 'app-login',
@@ -13,6 +14,7 @@ export class LoginComponent implements OnInit {
 
   constructor( private authService: AuthService, private router: Router) {
     this.authService.logout();
+    this.authService.currentInvite = null;
   }
   ngOnInit() {}
 
@@ -28,7 +30,16 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/my-info']);
             }
           } else {
-            this.router.navigate(['/onboard/new-profile']);
+            //check for invite in system
+            this.authService.checkForInvite(email)
+              .subscribe(invite => {
+                if (invite){
+                  this.authService.currentInvite = invite;
+                  this.router.navigate(['/onboard/accept-invite']);
+                } else {
+                  this.router.navigate(['/onboard/new-profile']);
+                }
+              });
           }
 
         }

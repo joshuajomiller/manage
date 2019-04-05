@@ -43,21 +43,27 @@ router.route('/')
           res.status(400).send({error: err});
         } else {
           if (team) {
-            Invite.findOne({email: req.body.email}, (err, invite) => {
-              if (invite) {
-                res.status(400).send({msg: 'User already invited'});
+            User.findOne({email: req.body.email}, (err, user) => {
+              if (user){
+                res.status(400).send({msg: 'User is already part of a different team.'});
               } else {
-                let newInvite = {
-                  email: req.body.email,
-                  status: 'pending',
-                  manager: user._id,
-                  team: team._id
-                };
-                Invite.create(newInvite, function (err, data) {
-                  if (err) {
-                    res.status(400).send({err, msg: 'An error occurred. Please try again soon'})
+                Invite.findOne({email: req.body.email}, (err, invite) => {
+                  if (invite) {
+                    res.status(400).send({msg: 'User already invited to your team'});
+                  } else {
+                    let newInvite = {
+                      email: req.body.email,
+                      status: 'pending',
+                      manager: user._id,
+                      team: team._id
+                    };
+                    Invite.create(newInvite, function (err, data) {
+                      if (err) {
+                        res.status(400).send({err, msg: 'An error occurred. Please try again soon'})
+                      }
+                      res.send({invited: true});
+                    });
                   }
-                  res.send({invited: true});
                 });
               }
             });
@@ -115,6 +121,22 @@ router.route('/remove')
         }
       }
     }))
+  });
+
+router.route('/email/:email')
+/* Get open invites for email. */
+  .get(function (req, res) {
+    console.log(req.params.email);
+    Invite.findOne({email: req.params.email}).populate('manager').populate('team').exec((err, invite) => {
+      if (err){
+        res.status(400).send(err);
+      }
+      if (invite) {
+        res.send({invite});
+      } else {
+        res.status(204).send();
+      }
+    });
   });
 
 module.exports = router;

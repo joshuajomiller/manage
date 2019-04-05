@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {CurrentUser, OrganisationDetails, TeamDetails} from "./user";
+import {CurrentUser, OrganisationDetails} from "./user";
 import {HttpClient} from "@angular/common/http";
 import {JwtHelperService} from '@auth0/angular-jwt';
 import {tap} from "rxjs/internal/operators";
-import {BehaviorSubject, Observable} from "rxjs/index";
+import {BehaviorSubject} from "rxjs/index";
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +11,7 @@ import {BehaviorSubject, Observable} from "rxjs/index";
 
 export class AuthService {
   user: CurrentUser;
+  public currentInvite = null;
   authStatusChange: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   public redirectUrl: string;
 
@@ -42,6 +43,10 @@ export class AuthService {
 
   register(firstName: string, lastName: string, email: string, password: string) {
     return this.http.post<{created}>('/api/auth/user', {firstName: firstName, lastName: lastName, email: email, password: password});
+  }
+
+  checkForInvite(email: string) {
+    return this.http.get<any>('/api/invite/email/' + email);
   }
 
   setUser(user: CurrentUser, remember: boolean) {
