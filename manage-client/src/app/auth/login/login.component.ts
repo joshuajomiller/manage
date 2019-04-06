@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor( private authService: AuthService, private router: Router) {
     this.authService.logout();
     this.authService.currentInvite = null;
+    this.authService.removeCurrentInvite();
   }
   ngOnInit() {}
 
@@ -34,7 +35,7 @@ export class LoginComponent implements OnInit {
             this.authService.checkForInvite(email)
               .subscribe(invite => {
                 if (invite){
-                  this.authService.currentInvite = invite;
+                  this.authService.setCurrentInvite(invite);
                   this.router.navigate(['/onboard/accept-invite']);
                 } else {
                   this.router.navigate(['/onboard/new-profile']);

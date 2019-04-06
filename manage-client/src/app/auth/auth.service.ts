@@ -90,4 +90,25 @@ export class AuthService {
   updateTeamFeedbackPreferences(preferences){
     return this.http.put<{updated: boolean}>('/api/team/preferences/feedback', preferences);
   }
+
+  setCurrentInvite(invite){
+    this.currentInvite = invite;
+    localStorage.setItem('currentInvite', JSON.stringify(invite));
+  }
+
+  getCurrentInvite(){
+    if (this.currentInvite) {
+      return this.currentInvite
+    } else {
+      let storedInvite = JSON.parse(localStorage.getItem('currentInvite'))
+      if (storedInvite && storedInvite !== "null"){
+        return storedInvite;
+      }
+    }
+  }
+
+  removeCurrentInvite(){
+    this.currentInvite = null;
+    localStorage.removeItem('currentInvite')
+  }
 }

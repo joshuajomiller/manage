@@ -127,12 +127,15 @@ router.route('/email/:email')
 /* Get open invites for email. */
   .get(function (req, res) {
     console.log(req.params.email);
-    Invite.findOne({email: req.params.email}).populate('manager').populate('team').exec((err, invite) => {
+    Invite.findOne({email: req.params.email})
+      .populate({path: 'manager', populate: {path: 'profile.organisation'}})
+      .populate('team')
+      .lean().exec((err, invite) => {
       if (err){
         res.status(400).send(err);
       }
       if (invite) {
-        res.send({invite});
+        res.send({...invite});
       } else {
         res.status(204).send();
       }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from "../../auth/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-accept-invite',
@@ -8,12 +9,13 @@ import {AuthService} from "../../auth/auth.service";
 })
 export class AcceptInviteComponent implements OnInit {
 
-  private currentInvite: any;
+  public currentInvite: any;
 
-  constructor(private authService: AuthService) {
-    if (this.authService.currentInvite){
-      this.currentInvite = this.authService.currentInvite;
-      console.log(this.authService.currentInvite);
+  constructor(private authService: AuthService, private router: Router) {
+    this.currentInvite = this.authService.getCurrentInvite();
+    console.log(this.currentInvite);
+    if (!this.currentInvite){
+      this.router.navigate(['/auth/login'])
     }
   }
 
