@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
             //check for invite in system
             this.authService.checkForInvite(email)
               .subscribe(invite => {
-                if (invite){
+                if (invite && invite.status === "pending"){
                   this.authService.setCurrentInvite(invite);
                   this.router.navigate(['/onboard/accept-invite']);
                 } else {

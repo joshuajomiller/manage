@@ -37,8 +37,8 @@ router.route('/')
 
     /* POST new invite. */
     .post(function (req, res) {
-      let user = req.user;
-      Team.findOne({manager: user._id}, ((err, team) => {
+      let currentUser = req.user;
+      Team.findOne({manager: currentUser._id}, ((err, team) => {
         if (err) {
           res.status(400).send({error: err});
         } else {
@@ -54,8 +54,9 @@ router.route('/')
                     let newInvite = {
                       email: req.body.email,
                       status: 'pending',
-                      manager: user._id,
-                      team: team._id
+                      manager: currentUser._id,
+                      team: team._id,
+                      organisation: team.organisation
                     };
                     Invite.create(newInvite, function (err, data) {
                       if (err) {
@@ -104,23 +105,52 @@ router.route('/remove')
 /* Post open invite remove request. */
   .post(function (req, res) {
     let user = req.user;
-    Team.findOne({manager: user._id}, ((err, team) => {
+    Invite.findById(req.params.id, (err, invite) => {
       if (err) {
-        res.status(400).send({error: err});
-      } else {
-        if (team) {
-          console.log(req.body.email);
-          Invite.remove({email: req.body.email}, (err) => {
-            if (err) {
-              res.status(400).send(err)
-            }
-            res.send({removed: true});
-          });
-        } else {
-          res.status(400).send({msg: 'No team could be found, or you are not authorised to invite team members'});
-        }
+        res.status(400).send(err)
       }
-    }))
+
+    });
+  });
+
+router.route('/:id/accept')
+/* Put accept invite. */
+  .put(function (req, res) {
+    let user = req.user;
+    Invite.findById(req.params.id, (err, invite) => {
+      if (err) {
+        res.status(400).send(err)
+      }
+      if (invite.email !== user.email) {
+        res.status(400).send({msg: "You are not authorised to accept this invite"});
+      } else {
+        invite.status = "accepted";
+        invite.save(err => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            Team.findById(invite.team, (err, team) => {
+              team.members.push(user._id);
+              team.save(err => {
+                if (err) {
+                  res.status(400).send(err);
+                } else {
+                  user.profile.team = invite.team;
+                  user.profile.organisation = invite.organisation;
+                  user.save(err=>{
+                    if (err){
+                      res.status(400).send(err);
+                    } else {
+                      res.send({accepted: true});
+                    }
+                  })
+                }
+              })
+            });
+          }
+        })
+      }
+    });
   });
 
 router.route('/email/:email')

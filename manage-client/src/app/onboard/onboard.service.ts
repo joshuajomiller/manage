@@ -40,4 +40,8 @@ export class OnboardService {
   removeTeamMember(email){
     return this.http.post<{removed: boolean}>('/api/invite/remove', email)
   }
+
+  acceptInvite(id){
+    return this.http.put<{accepted: boolean}>('/api/invite/' + id + '/accept', null)
+  }
 }

@@ -45,7 +45,7 @@ router.route('/')
           let newTeam = {
             name: req.body.teamName,
             manager: user._id,
-            organisationId: user.profile.organisation,
+            organisation: user.profile.organisation,
             members: []
           };
           Team.create(newTeam, function (err, data) {
