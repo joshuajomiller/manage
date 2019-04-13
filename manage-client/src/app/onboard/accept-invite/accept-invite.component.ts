@@ -29,4 +29,10 @@ export class AcceptInviteComponent implements OnInit {
     })
   }
 
+  declineInvite(){
+    this.onboardService.declineInvite(this.currentInvite._id).subscribe(response=>{
+      this.router.navigate(['/onboard/new-profile'])
+    })
+  }
+
 }

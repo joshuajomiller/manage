@@ -44,7 +44,7 @@ router.route('/')
         } else {
           if (team) {
             User.findOne({email: req.body.email}, (err, user) => {
-              if (user){
+              if (user && user.profile.team){
                 res.status(400).send({msg: 'User is already part of a different team.'});
               } else {
                 Invite.findOne({email: req.body.email}, (err, invite) => {
@@ -105,12 +105,22 @@ router.route('/remove')
 /* Post open invite remove request. */
   .post(function (req, res) {
     let user = req.user;
-    Invite.findById(req.params.id, (err, invite) => {
+    Team.findOne({manager: user._id}, ((err, team) => {
       if (err) {
-        res.status(400).send(err)
+        res.status(400).send({error: err});
+      } else {
+        if (team) {
+          Invite.remove({email: req.body.email}, (err) => {
+            if (err) {
+              res.status(400).send(err)
+            }
+            res.send({removed: true});
+          });
+        } else {
+          res.status(400).send({msg: 'No team could be found, or you are not authorised to remove team invites'});
+        }
       }
-
-    });
+    }))
   });
 
 router.route('/:id/accept')
@@ -153,6 +163,29 @@ router.route('/:id/accept')
     });
   });
 
+router.route('/:id/decline')
+/* Put decline invite. */
+  .put(function (req, res) {
+    let user = req.user;
+    Invite.findById(req.params.id, (err, invite) => {
+      if (err) {
+        res.status(400).send(err)
+      }
+      if (invite.email !== user.email) {
+        res.status(400).send({msg: "You are not authorised to decline this invite"});
+      } else {
+        invite.status = "declined";
+        invite.save(err => {
+          if (err) {
+            res.status(400).send(err);
+          } else {
+            res.send({declined: true});
+          }
+        })
+      }
+    });
+  });
+
 router.route('/email/:email')
 /* Get open invites for email. */
   .get(function (req, res) {
@@ -165,6 +198,10 @@ router.route('/email/:email')
         res.status(400).send(err);
       }
       if (invite) {
+        invite.manager = {
+          email: invite.manager.email,
+          profile: invite.manager.profile
+        };
         res.send({...invite});
       } else {
         res.status(204).send();

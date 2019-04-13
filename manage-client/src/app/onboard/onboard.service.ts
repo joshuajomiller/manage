@@ -44,4 +44,8 @@ export class OnboardService {
   acceptInvite(id){
     return this.http.put<{accepted: boolean}>('/api/invite/' + id + '/accept', null)
   }
+
+  declineInvite(id){
+    return this.http.put<{accepted: boolean}>('/api/invite/' + id + '/decline', null)
+  }
 }
