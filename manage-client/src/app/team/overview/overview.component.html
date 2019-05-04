@@ -8,42 +8,42 @@
             <div class="image-wrapper profile-image mb-2">
               <img [src]="member.image">
             </div>
-            <div>{{member.fullName}}</div>
+            <div>{{member.profile.details.firstName}} {{member.profile.details.lastName}}</div>
+            <div>{{member.email}}</div>
             <div>{{member.position}}</div>
-            <div>{{member.status}}</div>
           </div>
           <hr>
-          <div>
-            New Tasks: {{member.tasksNew.length}}
-            <div class="float-right" [hidden]="member.tasksNew.show" (click)="member.tasksNew.show = true"><i class="fas fa-angle-right"></i></div>
-            <div class="float-right" [hidden]="!member.tasksNew.show" (click)="member.tasksNew.show = false"><i class="fas fa-angle-down"></i></div>
-            <div class="tasks-wrapper row" [hidden]="!member.tasksNew.show">
-              <div class="task-wrapper col pl-4" *ngFor="let task of member.tasksNew">
-                <div><a [href]="task.link" target="_blank">{{task.title}} - {{task.description}}</a></div>
-              </div>
-            </div>
-          </div>
-          <div>
-            In Progress Tasks: {{member.tasksInProgress.length}}
-            <div class="float-right" [hidden]="member.tasksInProgress.show" (click)="member.tasksInProgress.show = true"><i class="fas fa-angle-right"></i></div>
-            <div class="float-right" [hidden]="!member.tasksInProgress.show" (click)="member.tasksInProgress.show = false"><i class="fas fa-angle-down"></i></div>
-            <div class="tasks-wrapper row" [hidden]="!member.tasksInProgress.show">
-              <div class="task-wrapper col pl-4" *ngFor="let task of member.tasksInProgress">
-                <div><a [href]="task.link" target="_blank">{{task.title}} - {{task.description}}</a></div>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <div>
-            {{member.newRequests.length}} New Requests
-            <div class="float-right" [hidden]="member.newRequests.show" (click)="member.newRequests.show = true"><i class="fas fa-angle-right"></i></div>
-            <div class="float-right" [hidden]="!member.newRequests.show" (click)="member.newRequests.show = false"><i class="fas fa-angle-down"></i></div>
-            <div class="tasks-wrapper row" [hidden]="!member.newRequests.show">
-              <div class="task-wrapper col pl-4" *ngFor="let request of member.newRequests">
-                <div>{{request.type}} - {{request.text}}</div>
-              </div>
-            </div>
-          </div>
+          <!--<div>-->
+            <!--New Tasks: {{member.tasksNew.length}}-->
+            <!--<div class="float-right" [hidden]="member.tasksNew.show" (click)="member.tasksNew.show = true"><i class="fas fa-angle-right"></i></div>-->
+            <!--<div class="float-right" [hidden]="!member.tasksNew.show" (click)="member.tasksNew.show = false"><i class="fas fa-angle-down"></i></div>-->
+            <!--<div class="tasks-wrapper row" [hidden]="!member.tasksNew.show">-->
+              <!--<div class="task-wrapper col pl-4" *ngFor="let task of member.tasksNew">-->
+                <!--<div><a [href]="task.link" target="_blank">{{task.title}} - {{task.description}}</a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div>-->
+            <!--In Progress Tasks: {{member.tasksInProgress.length}}-->
+            <!--<div class="float-right" [hidden]="member.tasksInProgress.show" (click)="member.tasksInProgress.show = true"><i class="fas fa-angle-right"></i></div>-->
+            <!--<div class="float-right" [hidden]="!member.tasksInProgress.show" (click)="member.tasksInProgress.show = false"><i class="fas fa-angle-down"></i></div>-->
+            <!--<div class="tasks-wrapper row" [hidden]="!member.tasksInProgress.show">-->
+              <!--<div class="task-wrapper col pl-4" *ngFor="let task of member.tasksInProgress">-->
+                <!--<div><a [href]="task.link" target="_blank">{{task.title}} - {{task.description}}</a></div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<hr>-->
+          <!--<div>-->
+            <!--{{member.newRequests.length}} New Requests-->
+            <!--<div class="float-right" [hidden]="member.newRequests.show" (click)="member.newRequests.show = true"><i class="fas fa-angle-right"></i></div>-->
+            <!--<div class="float-right" [hidden]="!member.newRequests.show" (click)="member.newRequests.show = false"><i class="fas fa-angle-down"></i></div>-->
+            <!--<div class="tasks-wrapper row" [hidden]="!member.newRequests.show">-->
+              <!--<div class="task-wrapper col pl-4" *ngFor="let request of member.newRequests">-->
+                <!--<div>{{request.type}} - {{request.text}}</div>-->
+              <!--</div>-->
+            <!--</div>-->
+          <!--</div>-->
         </div>
       </div>
     </div>

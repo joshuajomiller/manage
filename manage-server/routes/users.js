@@ -101,11 +101,21 @@ router.get('/team', function (req, res) {
     .then(user => {
       if (user) {
         console.log(user.profile.team);
-        Team.findById(user.profile.team._id, (err, team) => {
+        Team.findById(user.profile.team._id)
+          .populate('members')
+          .lean().exec((err, team) => {
           if (err) {
             res.status(400).send({error: err});
           } else {
             if (team) {
+              if (team.members.length){
+                team.members = team.members.map(member => {
+                  return {
+                    email: member.email,
+                    profile: member.profile,
+                  }
+                })
+              }
               res.send(team);
             } else {
               res.status(400).send({msg: 'Team does not exist'});
