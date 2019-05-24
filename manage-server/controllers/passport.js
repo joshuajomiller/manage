@@ -6,6 +6,7 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const JWTStrategy   = passportJWT.Strategy;
 const dotenv = require('dotenv');
 let User = require('../models/User');
+const AtlassianStrategy = require('passport-atlassian-oauth2');
 
 dotenv.load({ path: '.dev.env' });
 
@@ -31,6 +32,17 @@ passport.use(new LocalStrategy({
   }
 ));
 
+passport.use(new AtlassianStrategy({
+    clientID: 'Rt1n28PYRDG3VWlnQtq3K65Nt97Jq5zB',
+    clientSecret: '1Os0dF8KRQ2ngQZJS57kXCm8dgUISNPjWqcVMzo5dcga5-bYeKe8SQRn-bhAV2QS',
+    callbackURL: 'http://localhost:4200/api/auth/atlassian/callback',
+    scope: 'read:jira-work read:jira-user write:jira-work',
+  },
+  (accessToken, refreshToken, profile, cb) => {
+    console.log(JSON.stringify(profile, null, 2));
+    cb(null, profile);
+  }
+));
 
 /**
  * OAuth Strategy Overview
@@ -105,6 +117,7 @@ passport.use(new LocalStrategy({
 //     });
 //   }
 // }));
+
 
 passport.use(new JWTStrategy({
     jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),

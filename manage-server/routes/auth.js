@@ -59,4 +59,12 @@ router.post('/user', function (req, res) {
     });
 });
 
+router.get('/atlassian', passport.authenticate('atlassian'));
+
+router.get('/atlassian/callback', passport.authenticate('atlassian', { failureRedirect: '/error' }), (req, res) => {
+  // Successfull authorization, redirect user to profile page
+  res.redirect('/profile-page');
+});
+
+
 module.exports = router;
