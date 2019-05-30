@@ -69,7 +69,8 @@ router.get('/atest', function (req, res){
     // const url = "http://jira:8080/rest/agile/1.0/board/5/issue";
     // const url = "http://jira:8080/rest/api/2/mypermissions";
     // const url = "http://jira:8080/rest/api/2/user/search?username=_&startAt=0&maxResults=1000&includeActive=true&includeInactive=false";
-    const url = "http://jira:8080/rest/api/2/issue/OS-6145/worklog";
+    const url = "http://jira:8080/rest/api/2/issue/SAIP-3578/worklog";
+    // const url = "http://jira:8080/rest/api/2/search?jql=worklogAuthor = joshua_m and worklogDate > startOfYear() and worklogDate < startOfMonth()";
     const authHeader = (new Buffer('joshua_m:matir88!')).toString('base64');
     const headers = {
         'Authorization': `Basic ${authHeader}`,
