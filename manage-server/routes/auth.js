@@ -3,6 +3,7 @@ const router  = express.Router();
 const jwt      = require('jsonwebtoken');
 const passport = require('passport');
 const User = require("../models/User");
+const axios = require('axios');
 
 /* POST login. */
 router.post('/login', function (req, res, next) {
@@ -57,6 +58,37 @@ router.post('/user', function (req, res) {
             }
         }
     });
+});
+
+router.get('/atest', function (req, res){
+
+    //reference
+    //https://docs.atlassian.com/software/jira/docs/api/REST/7.6.1/#api/2/search-search
+
+    // const url = "http://jira:8080/rest/agile/1.0/board";
+    // const url = "http://jira:8080/rest/agile/1.0/board/5/issue";
+    // const url = "http://jira:8080/rest/api/2/mypermissions";
+    // const url = "http://jira:8080/rest/api/2/user/search?username=_&startAt=0&maxResults=1000&includeActive=true&includeInactive=false";
+    const url = "http://jira:8080/rest/api/2/issue/OS-6145/worklog";
+    const authHeader = (new Buffer('joshua_m:matir88!')).toString('base64');
+    const headers = {
+        'Authorization': `Basic ${authHeader}`,
+        'Content-Type': 'application/json'
+    };
+
+    const config = {headers};
+
+    axios.get(url, config)
+        .then(function (response) {
+            // handle success
+            console.log(response.data);
+            res.send(response.data);
+        })
+        .catch(function (error) {
+            // handle error
+            console.log(error);
+            res.status(400).send(error.response.data);
+        })
 });
 
 router.get('/atlassian', passport.authenticate('atlassian'));
