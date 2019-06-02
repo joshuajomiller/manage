@@ -67,11 +67,12 @@ router.get('/atest', function (req, res){
 
     // const url = "http://jira:8080/rest/agile/1.0/board";
     // const url = "http://jira:8080/rest/agile/1.0/board/5/issue";
+    // const url = "http://jira:8080/rest/agile/1.0/board/5/issue?expand=changelog";
     // const url = "http://jira:8080/rest/api/2/mypermissions";
     // const url = "http://jira:8080/rest/api/2/user/search?username=_&startAt=0&maxResults=1000&includeActive=true&includeInactive=false";
-    const url = "http://jira:8080/rest/api/2/issue/SAIP-3578/worklog";
-    // const url = "http://jira:8080/rest/api/2/search?jql=worklogAuthor = joshua_m and worklogDate > startOfYear() and worklogDate < startOfMonth()";
-    const authHeader = (new Buffer('joshua_m:matir88!')).toString('base64');
+    // const url = "http://jira:8080/rest/api/2/issue/SAIP-3370?expand=changelog";
+    const url = "http://jira:8080/rest/api/2/search?jql=status was in (Reopen) and Resolver = joshua_m";
+    const authHeader = (new Buffer('joshua_m:Matir88!')).toString('base64');
     const headers = {
         'Authorization': `Basic ${authHeader}`,
         'Content-Type': 'application/json'
